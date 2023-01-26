@@ -1,0 +1,71 @@
+{% extends 'index.html' %}
+{% load tags %}
+{% block content %}
+<section>
+<div class="container">
+	<!-- Outer Row -->
+	<div class="row justify-content-center align-items-center">
+		<div class="col-xl-10 col-lg-12 col-md-9">
+			<div class="card o-hidden border-0 shadow-lg my-5">
+				<div class="card-body p-0">
+					<!-- Nested Row within Card Body -->
+					<div class="row mx-0">
+						<div class="col-lg-6 d-none d-lg-block bg-login-image">
+							<img class="login-page-img" src="" alt="Login Banner Image"/>
+						</div>
+						<div class="col-lg-6 px-0">
+							<div class="py-5 px-4">
+								<div class="text-center">
+									<h1><a href="#">HIREST</a></h1>
+									<p class="h4 text-black font-weight-bold mt-5 mb-2">Login</p>
+								</div>
+								<form class="user" method="post">
+									{% csrf_token %}
+									<input type="hidden" name="next" value="{{request.META.HTTP_REFERER}}"/>
+									{% for field in form %}
+									<div class="col-lg-12 mt-3">
+										<label class="form-label text-gray-900 mb-0">{{ field.label_tag }}</label>
+										<!-- <input type="username" name="username" class="form-control form-control-user" required id="id_username"> -->
+										{{field | add_class:"form-control"}}
+										{{ field.errors }}
+										{% if field.help_text %}
+										<p class="help small">{{ field.help_text|safe }}</p>
+										{% endif %}
+									</div>
+									{% endfor %}
+
+									{% if messages %}
+									<ul class="mt-4 alert alert-danger" style="list-style: none;">
+										{% for message in messages %}
+										<li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+											{% endfor %}
+									</ul>
+									{% endif %}
+									<div class="row mx-0">
+										<div class="col-12 text-center">
+											<button type="submit" class="btn btn-primary btn-block mt-4">Login
+											</button>
+										</div>
+									</div>
+									<div class="text-center mt-3"><a href="{% url 'register' %}">Don't have an account?</a></div>
+							</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{% block js %}
+<script>
+	$(document).ready(function (){
+		$('#main').addClass('background-gradient');
+	});
+</script>
+{% endblock %}
