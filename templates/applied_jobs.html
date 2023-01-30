@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% block content %}
+{% for j in jobs %}
+<div class="card m-4">
+    <h5 class="card-header">{{j.job.company_Name}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{j.job.title}} || $ {{j.job.salary}}</h5>
+      {% for skill in j.job.skills.all %}
+      <button type="button" class="btn btn-primary my-2 mx-1">{{skill.name}}</button>
+      {% endfor %}
+        <div class="m-2">
+          <a href="#" data-target="{{job.id}}" class="btn btn-success">Applied</a>
+        </div>
+    </div>
+  </div>
+{% endfor %}
+{% endblock %}

@@ -1,18 +1,12 @@
 {% extends 'index.html' %}
 {% block content %}
 
-{% for job in jobs %}
-<div class="card m-4">
-    <h5 class="card-header">{{job.company_Name}}</h5>
-    <div class="card-body">
-      <h5 class="card-title">{{job.title}} || $ {{job.salary}}</h5>
-      {% for skill in job.skills__set.all %}
-      <button type="button" class="btn btn-primary">{{skill.name}}</button>
-      {% endfor %}
-      <a href="#" class="btn btn-success">Apply</a>
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center home-card">
+      <h1>Get Yourself Hired.</h1>
+      <h3>Find Your Dream Job with Hirest.</h3>
     </div>
-  </div>
-{% endfor %}
+</div>
 
 
 {% endblock %}
