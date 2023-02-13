@@ -38,7 +38,6 @@ def loginView(request):
 def signup(request):
     header = False
     form = NewUserForm()
-    profile_form = NewUserForm()
     if request.method == 'POST':
 
         form = NewUserForm(request.POST)
