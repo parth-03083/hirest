@@ -79,3 +79,14 @@ def myAppliedJobView(request):
         return render(request,'applied_jobs.html',context=context)
     else:
         return redirect('login')
+    
+def internShipView(request):
+    internships=Internships.objects.all()
+    context={'internships':internships}
+    return render(request,'internships.html',context=context)
+
+def startupView(request):
+    startups=StartUps.objects.all()
+    context={'startups':startups}
+    return render(request,'startups.html',context=context)
+

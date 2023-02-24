@@ -36,10 +36,10 @@
                 <a class="nav-link scroll-target" href="{% url 'jobs' %}">Jobs</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link scroll-target" href="#">StartUps</a>
+                <a class="nav-link scroll-target" href="{% url 'startups' %}">StartUps</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link scroll-target" href="#">Internship</a>
+                <a class="nav-link scroll-target" href="{% url 'internships' %}">Internship</a>
               </li>
 
               <li class="nav-item">
@@ -50,7 +50,6 @@
         <div class="profile">
             {% if not request.user.is_authenticated %}
                 <a href="{% url 'login' %}"><button type="button" class="btn btn-success m-2">Login</button></a>
-                Something Here
                 <a href="{% url 'register' %}"><button type="button" class="btn btn-secondary m-2">SignUp</button></a>
             {% else %}
             <div class="profile text-white">
