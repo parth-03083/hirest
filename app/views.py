@@ -90,3 +90,12 @@ def startupView(request):
     context={'startups':startups}
     return render(request,'startups.html',context=context)
 
+def myProfileView(request):
+    form = ProfileForm()
+    form1 = NewUserForm()
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    return render(request, 'profile.html', {'form': form , 'form1':form1 , 'header': False})
