@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+{% load tags %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 text-center h1">
+            Configure My Profile 
+        </div> 
+        
+    
+        <form action="" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="col-lg-12 mt-3">
+                
+                {% if field.name == 'skills' %}
+                <label class="form-label text-gray-900 mb-0">
+                    {{ field.label_tag }} 
+                    <a class="text-decoration-underline" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Add Skill
+                    </a>
+                </label> 
+                {{field | add_class:"form-control select2"}}
+                {% else %}
+                <label class="form-label text-gray-900 mb-0">{{ field.label_tag }}</label>
+                {{field | add_class:"form-control"}}
+                {% endif %} 
+                {{ field.errors }}
+            </div>
+            {% endfor %}
+
+            {% if messages %}
+            <ul class="mt-4 alert alert-danger" style="list-style: none;">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message
+                    }}</li>
+                    {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="col-lg-12 mt-3">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>       
+        </form>
+    </div>
+{% endblock %}
+{% block js  %}
+<script>
+    $(document).ready(function(){
+        $('.select2').select2();
+    });
+
+</script>
+{% endblock %}

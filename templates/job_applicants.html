@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% load tags %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 text-center h1">
+            Job Applicants  
+        </div>
+        <div class="tab-pane">
+            <div class="mt-3">
+                <ul class="list list-inline">
+                    {% if applicants.exists %}
+                        <li class="h4 mb-4">
+                            Applied Candidates
+                        </li>
+                        
+                        {% for a in applicants %}
+                        <li
+                            class="d-flex justify-content-between shadow m-2 p-2 border border-secondary rounded align-items-center row">
+                            <div class="col-md-3">
+                                {{ a.user.user.first_name }} - {{ a.user.user.last_name }}
+                            </div>
+                            <div class="col-md-5">
+                                Skills:
+                                {% for i in a.user.skills.all %}
+                                <span class="btn btn-secondary disabled p-1"> {{i.name}} </span>
+                                {% endfor %}
+                            </div>
+
+                            <div class="col-md-2">
+                                <a href="{% url 'user-profile' a.user.user.id %}"
+                                    class="btn btn-outline-primary btn-sm rounded-lg shadow-sm my-auto" target="_blank"> View Profile </a>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

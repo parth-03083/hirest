@@ -4,12 +4,26 @@
     <div class="row">
         <div class="col-md-12 text-center h1">
             My Profile
-        </div>
+        </div> 
+        <!-- Demo Modal Form  -->
+    
+        <form action="" method="post">
         {% csrf_token %}
         {% for field in form %}
             <div class="col-lg-12 mt-3">
+                
+                {% if field.name == 'skills' %}
+                <label class="form-label text-gray-900 mb-0">
+                    {{ field.label_tag }} 
+                    <a class="text-decoration-underline" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Add Skill
+                    </a>
+                </label> 
+                {{field | add_class:"form-control select2"}}
+                {% else %}
                 <label class="form-label text-gray-900 mb-0">{{ field.label_tag }}</label>
                 {{field | add_class:"form-control"}}
+                {% endif %} 
                 {{ field.errors }}
             </div>
             {% endfor %}
@@ -22,23 +36,65 @@
                     {% endfor %}
             </ul>
             {% endif %}
-        {% endfor %}
-        {% for field in form1 %}
-        <div class="col-lg-12 mt-3">
-            <label class="form-label text-gray-900 mb-0">{{ field.label_tag }}</label>
-            {{field | add_class:"form-control"}}
-            {{ field.errors }}
+            <div class="col-lg-12 mt-3">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>       
+        </form>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Skills</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="skillForm">
+                        {% csrf_token %}
+                        {% for field in skillform %}
+                        <label class="form-label text-gray-900 mb-0">{{ field.label_tag }}</label>
+                        {{field | add_class:"form-control"}}
+                        {% endfor %}
+                    
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary"> Add </button>
+                
+                </div>
+                </form>
+              </div>
+            </div>
         </div>
-        {% endfor %}
-
-        {% if messages %}
-        <ul class="mt-4 alert alert-danger" style="list-style: none;">
-            {% for message in messages %}
-            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message
-                }}</li>
-                {% endfor %}
-        </ul>
-        {% endif %}
-{% endfor %}
     </div>
 {% endblock %}
+
+{% block js %}
+<script>
+        $(document).ready(function() {
+        
+            $('#skillForm').submit(function(e){
+                e.preventDefault();
+                var data = $(this).serialize();
+                console.log(data)
+                $.ajax({
+                    url: "{% url 'add_skill' %}",
+                    type: "POST",
+                    data: data,
+                    success: function(response){
+                        console.log(response);
+                        $('#exampleModal').modal('hide');
+                        Swal.fire(
+                             'Good job!',
+                             'You added a new skill!',
+                             'success'
+                            )
+                    }
+                })
+            })
+
+        
+        $('.select2').select2();
+        });
+</script>
+{% endblock %}
+

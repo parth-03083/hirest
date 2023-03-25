@@ -1,0 +1,78 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6">
+        <h4 class="text-secondary text-center">
+            Job Search Form 
+        </h4>
+        <form id="jobSearchForm">
+            <label for="title" class="text-secondary my-2"> Title </label>
+            <input type="text" class="form-control" name="title" id="id_title" placeholder="Job Title">
+
+            <label for="company" class="text-secondary my-2"> Companies </label>
+            <select name="company" class="select2 form-control" id="id_companies" multiple>
+                {% for c in companies %}
+                <option value="{{c}}">{{c}}</option>
+                {% endfor %}
+            </select>
+
+            <label for="location" class="text-secondary my-2"> Location </label>
+            <select name="location" class="form-control select2" id="location" multiple>
+                {% for l in location %}
+                <option value="{{l}}">{{ l }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="experience" class="text-secondary my-2"> Experience (in years) </label>
+            <input type="text" class="form-control" name="experience" id="id_experience" placeholder="experience">
+
+            <label for="skills" class="text-secondary my-2"> Skills </label>
+            <select name="skills" class="select2 form-control" id="id_skills" multiple>
+                {% for s in skills %}
+                <option value="{{s}}">{{ s }}</option>
+                {% endfor %}
+            </select>
+
+            <input type="hidden" name="salary-min" value="">
+            <input type="hidden" name="salary-max" value="">
+            <div class="text-center">
+            <input type="submit" value="Search" class="btn btn-primary text-center m-2">
+            <input type="reset" value="Reset" class="btn btn-light"  id = "form_reset">
+            </div>
+        </form>
+
+    </div>
+    <div class="infinite-container" id="fillContainer">
+
+    </div>
+</div>
+
+
+{% endblock %}
+{% block js %}
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
+        $('#jobSearchForm').submit(function(e) {
+            e.preventDefault();
+            var data = $(this).serialize();
+            console.log(data);
+            $.ajax({
+                url: "{% url 'job-search' %}",
+                type: "GET",
+                data: data,
+                success: function(data) {
+                    $('#fillContainer').html(data.content);
+                }
+            });
+        });
+        $('#form_reset').on('click', function() {
+            $('#location').val(null).trigger('change');
+            $('#id_skills').val(null).trigger('change');
+        });
+    });
+</script>
+
+{% endblock %}

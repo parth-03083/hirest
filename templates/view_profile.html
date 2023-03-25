@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+{% load tags %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 text-center h1">
+            {{user.first_name}} {{user.last_name}}
+        </div>
+    </div>
+
+    <div class="row mt-3 justify-content-center">
+        <div class="col-lg-6 col-md-12 col-12 p-4 width-card shadow card mx-2">
+            <div class="">
+                <div class="p-1 text-secondary">
+                    Name : {{user.first_name}} {{user.last_name}}
+                </div>
+                <div class="p-1 text-secondary">
+                    Contact : {{user_profile.phone}} 
+                </div>
+                <div class="p-1 text-secondary">
+                    Email : {{user.email}} 
+                </div>
+                <div class="p-1 text-secondary">
+                    Total Experience : {{user_profile.total_experience}} 
+                </div>
+                
+                <div class="p-1 text-secondary">
+                    Current Job : {{user_profile.current_job}} 
+                </div>
+                <div class="p-1 text-secondary">
+                    Current Company : {{user_profile.current_company}} 
+                </div>
+
+                <div class="p-1 text-secondary">
+                    Education : {{user_profile.education}} 
+                </div>
+                <div class="p-1 text-secondary">
+                    Skilss : 
+                    {% for i in user_profile.skills.all %}
+                    <span class="btn btn-secondary disabled py-1 "> {{i.name}} </span>
+                    {% endfor %} 
+                </div>
+                
+
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}

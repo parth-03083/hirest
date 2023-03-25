@@ -6,4 +6,6 @@ admin.site.register(Job)
 admin.site.register(AppliedJobs)
 admin.site.register(StartUps)
 admin.site.register(Internships)
+admin.site.register(MyProfile)
+admin.site.register(Company)
 

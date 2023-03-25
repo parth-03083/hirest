@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+{% load tags %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 text-center h1">
+            Manage Jobs 
+        </div>
+        <div class="tab-pane">
+            <div class="mt-3">
+                <ul class="list list-inline">
+                    {% if jobs.exists %}
+                        <li class="h4 mb-4">
+                            Posted Jobs
+                        </li>
+                        
+                        {% for job in jobs %}
+                        <li
+                            class="d-flex justify-content-between shadow m-2 p-2 border border-secondary rounded align-items-center row">
+                            <div class="col-md-3">
+                                {{ job.title }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ job.location}}
+                            </div>
+                            
+                            <div class="col-md-2">
+                                <a href="{% url 'job-applicants' job.id %}"
+                                    class="btn btn-outline-primary btn-sm rounded-lg shadow-sm my-auto" target="_blank">View Applications</a>
+                            </div>
+
+                            <div class="col-md-2">
+                                <a href="{% url 'update-job' job.id %}"
+                                    class="btn btn-outline-primary btn-sm rounded-lg shadow-sm my-auto" target="">Update Job</a>
+                            </div>
+
+                            <div class="col-md-2">
+                                <a href="{% url 'delete-job' job.id %}"
+                                    class="btn btn-outline-primary btn-sm rounded-lg shadow-sm my-auto" target="_blank"> Delete Job </a>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
