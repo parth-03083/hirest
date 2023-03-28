@@ -74,20 +74,27 @@ def jobView(request):
 
 def applyView(request):
     if request.user.is_authenticated:
-        user=MyProfile.objects.get(user=request.user)
-        job_id=int(request.GET.get('job_id'))
-        job=Job.objects.get(id=job_id)
-        applied_job=AppliedJobs.objects.get_or_create(user=user,job=job)
-        return redirect('jobs')
+        try:
+            user=MyProfile.objects.get(user=request.user)
+            job_id=int(request.GET.get('job_id'))
+            job=Job.objects.get(id=job_id)
+            applied_job=AppliedJobs.objects.get_or_create(user=user,job=job)
+            return redirect('jobs')
+        except MyProfile.DoesNotExist:
+            return redirect('add-profile')
     else:
         return redirect('login')
         
 def myAppliedJobView(request):
     if request.user.is_authenticated:
-        user=MyProfile.objects.get(user=request.user)
-        applied_jobs=AppliedJobs.objects.filter(user=user)
-        context={'jobs':applied_jobs}
-        return render(request,'applied_jobs.html',context=context)
+        try:
+            user=MyProfile.objects.get(user=request.user)
+            applied_jobs=AppliedJobs.objects.filter(user=user)
+            context={'jobs':applied_jobs}
+            return render(request,'applied_jobs.html',context=context)
+        
+        except MyProfile.DoesNotExist:
+            return redirect('add-profile')
     else:
         return redirect('login')
     
@@ -106,51 +113,65 @@ def createProfileView(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST)
         if form.is_valid():
+            form.save(commit=False)
+            form.user = request.user
             form.save()
             return redirect('index')
     return render(request, 'profile_form.html', {'form': form, 'header': False})
 
 def myProfileView(request):
     skillform = SkillForm()
-    if request.user.is_authenticated and MyProfile(user=request.user):
-            obj = MyProfile.objects.get(user=request.user)
-            form = ProfileForm(instance=obj)
-    else:
-        form = ProfileForm()
-
-    if request.method == 'POST':
+    try:
         if request.user.is_authenticated and MyProfile(user=request.user):
-            obj = MyProfile.objects.get(user=request.user)
-            form = ProfileForm(request.POST , instance=obj)
+                obj = MyProfile.objects.get(user=request.user)
+                form = ProfileForm(instance=obj)
         else:
-            form = ProfileForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('index')
+            form = ProfileForm()
+
+        if request.method == 'POST':
+            if request.user.is_authenticated and MyProfile(user=request.user):
+                obj = MyProfile.objects.get(user=request.user)
+                form = ProfileForm(request.POST , instance=obj)
+            else:
+                form = ProfileForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('index')
+    except MyProfile.DoesNotExist:
+        return redirect('add-profile')
+    
     return render(request, 'profile.html', {'form': form ,'skillform':skillform, 'header': False})
 
 def postJobView(request):
     if ishr(request.user):
         form = PostJobForm()
-        profile=MyProfile.objects.get(user=request.user)
-        if request.method == 'POST' and ishr(request.user):
-            form = PostJobForm(request.POST)
-            if form.is_valid():
-                object = form.save(commit=False)
-                object.company_name = MyProfile(user=request.user).current_company
-                object.save()
-                return redirect('index')
-        return render(request, 'post_job.html', {'form': form,'profile':profile})
+        try:
+            profile=MyProfile.objects.get(user=request.user)
+            if request.method == 'POST' and ishr(request.user):
+                form = PostJobForm(request.POST)
+                if form.is_valid():
+                    object = form.save(commit=False)
+                    object.company_name = MyProfile(user=request.user).current_company
+                    object.save()
+                    return redirect('index')
+            return render(request, 'post_job.html', {'form': form,'profile':profile})
+        except MyProfile.DoesNotExist:
+            return redirect('add-profile')
 
 def JobApplicationView(request):
     print(ishr(user=request.user))
     if request.user.is_authenticated and ishr(request.user) :
-        user=request.user
-        profile=MyProfile.objects.get(user=user)
-        company=profile.current_company
-        jobs=Job.objects.filter(company_name=company)
-        context={'jobs':jobs}
-        return render(request,'job_application.html',context=context)
+        try:
+            user=request.user
+            profile=MyProfile.objects.get(user=user)
+            company=profile.current_company
+            jobs=Job.objects.filter(company_name=company)
+            context={'jobs':jobs}
+            return render(request,'job_application.html',context=context)
+        except MyProfile.DoesNotExist:
+            return redirect('add-profile')
+    elif not ishr(request.user):
+        return redirect('create-company')
     else:
         return redirect('login')
     
@@ -202,14 +223,22 @@ def createCompanyProfile(request):
 
 def updateCompanyProfile(request):
     form = CompanyForm()
-    company = MyProfile.objects.get(user=request.user).current_company
-    form = CompanyForm(instance=company)
-    if request.method == 'POST':
-        form = CompanyForm(request.POST, instance=company)
-        if form.is_valid():
-            form.save()
-        return redirect('index')
-    return render(request, 'update_company_profile.html', {'form': form})
+    try:
+        company = MyProfile.objects.get(user=request.user).current_company
+        if not company:
+            return redirect('create-company')
+        form = CompanyForm(instance=company)
+        if request.method == 'POST':
+            form = CompanyForm(request.POST, instance=company)
+            if form.is_valid():
+                form.save()
+            return redirect('index')
+        return render(request, 'update_company_profile.html', {'form': form})
+    except MyProfile.DoesNotExist:
+        return redirect('my-profile')
+    
+    
+
 
 def searchJobs(request):
     title = request.GET.get('title',False)
@@ -245,6 +274,9 @@ def searchJobs(request):
         job = job.filter(skills__name__in=skills)
         internship = internship.filter(skills__name__in=skills)
 
+    skills = MyProfile.objects.get(user=request.user).skills.all().values_list('name', flat=True)
+
+    job = sorted(job, key = lambda x: sum([1 for i in x.skills.all() if i.name in skills]), reverse=True)
 
     if not is_ajax(request):
         location = list(set(Job.objects.values_list('location', flat=True)))

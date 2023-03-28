@@ -40,12 +40,56 @@
                 <button type="submit" class="btn btn-primary">Add</button>
             </div>       
         </form>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Skills</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="skillForm">
+                        {% csrf_token %}
+                        {% for field in skillform %}
+                        <label class="form-label text-gray-900 mb-0">{{ field.label_tag }}</label>
+                        {{field | add_class:"form-control"}}
+                        {% endfor %}
+                    
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary"> Add </button>
+                
+                </div>
+                </form>
+              </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 {% block js  %}
 <script>
     $(document).ready(function(){
         $('.select2').select2();
+        $('#skillForm').submit(function(e){
+                e.preventDefault();
+                var data = $(this).serialize();
+                console.log(data)
+                $.ajax({
+                    url: "{% url 'add_skill' %}",
+                    type: "POST",
+                    data: data,
+                    success: function(response){
+                        console.log(response);
+                        $('#exampleModal').modal('hide');
+                        Swal.fire(
+                             'Good job!',
+                             'You added a new skill!',
+                             'success'
+                            )
+                    }
+                })
+        });
     });
 
 </script>

@@ -26,7 +26,7 @@ class MyProfile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     phone=models.CharField(max_length=13,blank=True, null=True)
     skills = models.ManyToManyField(Skills,blank=True)
-    current_job=models.CharField(max_length=100)
+    current_job=models.CharField(max_length=100,blank=True,null=True)
     current_company = models.ForeignKey(Company,on_delete=models.CASCADE,blank=True,null=True)
     education = models.TextField(blank=True,null=True)
     total_experience = models.CharField(max_length=10,blank=True,null=True)
