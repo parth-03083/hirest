@@ -95,3 +95,22 @@ class Internships(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Careers(models.Model):
+    header = models.CharField(max_length=1000, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    footer = models.CharField(max_length=500, blank=True, null=True)
+    risec = models.CharField(max_length=6, blank=True, null=True) 
+
+    @property
+    def get_risec(self):
+        ans = ''
+        if self.risec:
+            for i in self.risec:
+                ans=ans+i+','
+            return ans[:-1]
+        else:
+            return ans
+        
+        
+        

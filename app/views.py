@@ -142,6 +142,8 @@ def myProfileView(request):
     return render(request, 'profile.html', {'form': form ,'skillform':skillform, 'header': False})
 
 def postJobView(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
     if ishr(request.user):
         form = PostJobForm()
         try:
@@ -162,8 +164,13 @@ def postJobView(request):
                     object.save()
                     return redirect('index')
             return render(request, 'post_job.html', {'form': form,'profile':profile})
-        except MyProfile.DoesNotExist:
-            return redirect('add-profile')
+        except MyProfile.DoesNotExist or Company.DoesNotExist:
+            if MyProfile.DoesNotExist:
+                return redirect('add-profile')
+            elif Company.DoesNotExist:
+                return redirect('create-company')
+
+
 
 def JobApplicationView(request):
     print(ishr(user=request.user))
@@ -313,3 +320,16 @@ def addSkillView(request):
             return JsonResponse(response)
     else:
         return HttpResponse('Not Allowed')
+
+def careerInfoViewRIASEC(request):
+    riasce=request.GET.get('code').split(',')
+    careers = Careers.objects.none()
+    for c in riasce:
+        career = Careers.objects.filter(risec__icontains=c)
+        careers = careers | career
+
+    careers = sorted(careers,  key=lambda x: sum(1 for c in riasce if c in x.risec),reverse=True)
+
+    print(careers)
+    return render(request, 'career_info_view.html', {'careers': careers})
+
