@@ -39,7 +39,7 @@ class MyProfile(models.Model):
 class Job(models.Model):
     title=models.CharField(max_length=500,blank=True, null=True)
     company_name=models.ForeignKey(Company,on_delete=models.CASCADE , null=True)
-    skills=models.ManyToManyField(Skills,blank=True,verbose_name='Skills')
+    skills=models.ManyToManyField(Skills,blank=True,null=True)
     salary=models.BigIntegerField(blank=True, null=True)
     rank=models.IntegerField(blank=True,null=True)
     description=models.TextField(blank=True, null=True)
@@ -53,7 +53,7 @@ class Job(models.Model):
         ordering = ['rank']
 
     def __str__(self):
-        return self.title + '-' + self.company_name.name
+        return self.title 
 
 class AppliedJobs(models.Model):
     job=models.ForeignKey(Job,on_delete=models.CASCADE)

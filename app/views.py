@@ -2,10 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django import forms
 from django.urls import reverse
-from .forms import *
-import datetime 
+from .forms import * 
 from django.template.loader import render_to_string
 from django.http import JsonResponse , HttpResponse
 from django.contrib.auth.models import Group
@@ -110,14 +108,15 @@ def startupView(request):
 
 def createProfileView(request):
     form = ProfileForm()
+    skillform = SkillForm()
     if request.method == 'POST':
         form = ProfileForm(request.POST)
         if form.is_valid():
-            form.save(commit=False)
-            form.user = request.user
-            form.save()
+            obj = form.save(commit=False)
+            obj.user = request.user
+            obj.save()
             return redirect('index')
-    return render(request, 'profile_form.html', {'form': form, 'header': False})
+    return render(request, 'profile_form.html', {'form': form, 'header': False ,'skillform' : skillform})
 
 def myProfileView(request):
     skillform = SkillForm()
@@ -151,7 +150,15 @@ def postJobView(request):
                 form = PostJobForm(request.POST)
                 if form.is_valid():
                     object = form.save(commit=False)
-                    object.company_name = MyProfile(user=request.user).current_company
+                    skills = request.POST.getlist('skills')
+                    skills = Skills.objects.filter(id__in=skills)
+                    object.save()
+                    for i in skills:
+                        object.skills.add(i)
+                    p = MyProfile.objects.get(user=request.user)
+                    company_id = p.current_company
+                    print("===profile_obj===",company_id)
+                    object.company_name = p.current_company
                     object.save()
                     return redirect('index')
             return render(request, 'post_job.html', {'form': form,'profile':profile})
@@ -197,6 +204,9 @@ def jobApplicantsView(request,id):
     if ishr(request.user):
         job=Job.objects.get(id=id)
         applicants=AppliedJobs.objects.filter(job=job)
+        skills = list(set(job.skills.all()))
+        applicants = sorted(applicants, key=lambda x: sum([1 for i in x.user.skills.all() if i.name in skills ]), reverse=True)
+
         context={'applicants':applicants}
 
         return render(request,'job_applicants.html',context=context)
