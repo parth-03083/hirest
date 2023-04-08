@@ -235,7 +235,7 @@ def jobApplicantsView(request,id):
 
 @login_required(login_url='login')
 def viewUserProfileView(request,id):
-    if ishr(request.user) and :
+    if ishr(request.user):
         user = User.objects.get(id=id)
         user_profile=MyProfile.objects.get(user=user)
         context={'user':user,'user_profile':user_profile}
@@ -354,4 +354,73 @@ def careerInfoViewRIASEC(request):
 
     print(careers)
     return render(request, 'career_info_view.html', {'careers': careers})
+
+
+@login_required(login_url='login')
+def createStartup(request):
+    form = StartupForm()
+    if request.method == 'POST':
+        form = StartupForm(request.POST)
+        obj = form.save(commit=False)
+        if not StartUps.objects.get(created_by = request.user).exitst():
+            obj.created_by = request.user
+            response ={}
+            response['status'] = 'success'
+            response['messafe'] = 'Startup Created Successfully'
+            return JsonResponse(response)
+        else:
+            return HttpResponse('You can create only one startup')
+    context = {'form':form}
+    return render(request,'startup_form.html',context)
+
+
+@login_required(login_url='login')
+def updateStartup(request):
+    try:
+        instance = StartUps.objects.get(request=request.user)
+        form = StartupForm(instance=instance)
+        if request.method == 'POST':
+            form = StartupForm(request.POST,instance=instance)
+            if form.is_valid():
+                form.save()
+        context = {'form':form}
+        return render(request,'startup_form.html',context)
+
+    except StartUps.DoesNotExist:
+        return redirect('create-startup')
+
+
+@login_required(login_url='login')
+def joinStartupView(request,id):
+    try:
+        user = request.user
+        startup = StartUps.objects.get(id=id)
+        obj = StartUpTeam.objects.create(user=request.user,startup=startup)
+        context = {}
+        context['status'] = 'success'
+        context['message'] = 'Startup Created Successfully'
+        return redirect('update-startup')
+
+    except StartUps.DoesNotExist:
+        return HttpResponse('following startup does not exist')
+    
+
+
+@login_required(login_url='login')
+def approveJoinStartup(request,id):    
+    startup = StartUps.objects.get(created_by=request.user)
+    applicant = User.objects.get(username=id)
+    obj = StartUpTeam.objects.get(startup=startup,user=applicant)
+    obj.is_approved = True
+    context = {}
+    context['status'] = 'successs'
+    context['Message'] = 'Approved StartUp Team'
+
+    return JsonResponse(context)
+
+
+
+    
+
+
 
