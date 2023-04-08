@@ -216,7 +216,10 @@ def jobDeleteView(request,id):
     if ishr(request.user):
         job=Job.objects.get(id=id)
         job.delete()
-        return redirect('index')
+        response = {
+            'status' : 'success'
+        }
+        return JsonResponse(response)
 
 @login_required(login_url='login')
 def jobApplicantsView(request,id):
@@ -232,10 +235,14 @@ def jobApplicantsView(request,id):
 
 @login_required(login_url='login')
 def viewUserProfileView(request,id):
-    user = User.objects.get(id=id)
-    user_profile=MyProfile.objects.get(user=user)
-    context={'user':user,'user_profile':user_profile}
-    return render(request,'view_profile.html',context=context)
+    if ishr(request.user):
+        user = User.objects.get(id=id)
+        user_profile=MyProfile.objects.get(user=user)
+        context={'user':user,'user_profile':user_profile}
+        return render(request,'view_profile.html',context=context)
+    else:
+        return HttpResponse('You are not allowed to access this')
+    
 
 @login_required(login_url='login')
 def createCompanyProfile(request):

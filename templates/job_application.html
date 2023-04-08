@@ -34,8 +34,8 @@
                             </div>
 
                             <div class="col-md-2">
-                                <a href="{% url 'delete-job' job.id %}"
-                                    class="btn btn-outline-primary btn-sm rounded-lg shadow-sm my-auto" target="_blank"> Delete Job </a>
+                                <a
+                                    class="btn btn-outline-primary btn-sm rounded-lg shadow-sm my-auto delete-job" data-job-id="{{job.id}}" target="_blank"> Delete Job </a>
                             </div>
                         </li>
                         {% endfor %}
@@ -44,6 +44,22 @@
             </div>
 
         </div>
-
     </div>
+{% endblock %}
+{% block js %}
+<script>
+    $(document).ready(function(){
+        $('delete-job').on('click', function(e){
+            id = $(this).attr('data-job-id');
+            console.log("====id-is====",id)
+            $.ajax({
+                type:"GET",
+                url:'/delete-job/'+id,
+                success: function(response){
+                    window.reload()
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}
