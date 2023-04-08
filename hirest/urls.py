@@ -22,5 +22,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app.urls')),
     path('blog/',include('blogApp.urls')),
-    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

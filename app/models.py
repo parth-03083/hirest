@@ -120,3 +120,19 @@ class StartUpTeam(models.Model):
     def __str__(self):
         return str(self.user.username)  + '-' + str(self.startup)
 
+class FileManager(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    file = models.FileField(upload_to='media/documents')
+    
+
+    def __str__(self):
+        return str(self.user.username) 
+
+class UserRISECScore(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    marks = models.CharField(max_length=3)
+
+    def __str__(self):
+        return str(self.user.username) + '-' + str(self.marks)
+
+    

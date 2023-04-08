@@ -8,4 +8,4 @@ admin.site.register(StartUps)
 admin.site.register(Internships)
 admin.site.register(MyProfile)
 admin.site.register(Company)
-
+admin.site.register(FileManager)

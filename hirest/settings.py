@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-rhbp4u)s7yih9kotx0wwp(r5e$_8ox&9!3$+zb_fzxxpkua@-x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost:8000','http://localhost:8000','127.0.0.1','127.0.0.1:8000','http://127.0.0.1:8000','http://127.0.0.1']
 
 
 # Application definition
@@ -53,21 +53,19 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'oauth2_provider.middleware.OAuth2TokenMiddleware',
 
 ]
 
 ROOT_URLCONF = 'hirest.urls'
 
-TEMPLATE_DIR = os.path.join(BASE_DIR, "webappexample", "templates")
+# TEMPLATE_DIR = os.path.join(BASE_DIR, "webappexample", "templates")
 
 
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -115,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Auth0 settings
 AUTH0_CLIENT_ID = '722949365611-fdf97l3fnf6h7tq8fau51djgdi5s2r9p.apps.googleusercontent.com'
 AUTH0_CLIENT_SECRET = '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'
-AUTH0_DOMAIN = 'http://localhost:8000.auth0.com'
+AUTH0_DOMAIN = 'http://127.0.0.1.auth0.com'
 AUTH0_CALLBACK_URL = 'http://localhost:8000/callback/'
 AUTH0_LOGOUT_REDIRECT_URL = 'http://localhost:8000'
 
@@ -253,6 +251,9 @@ if ENV_FILE:
     load_dotenv(ENV_FILE)
 
 # Load Auth0 application settings into memory
-AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN")
+
 AUTH0_CLIENT_ID = os.environ.get("AUTH0_CLIENT_ID")
 AUTH0_CLIENT_SECRET = os.environ.get("AUTH0_CLIENT_SECRET")
+SOCIAL_AUTH_AUTH0_DOMAIN = 'localhost'
+AUTH0_DOMAIN = 'localhost'
+ALLOWED_ORIGIN = 'localhost'
