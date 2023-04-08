@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 
 from pathlib import Path
+from dotenv import load_dotenv, find_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'blogApp',
-    'oauth2_provider'
 ]
 
 MIDDLEWARE = [
@@ -60,10 +60,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'hirest.urls'
 
+TEMPLATE_DIR = os.path.join(BASE_DIR, "webappexample", "templates")
+
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/'templates'],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -107,6 +111,13 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Auth0 settings
+AUTH0_CLIENT_ID = '722949365611-fdf97l3fnf6h7tq8fau51djgdi5s2r9p.apps.googleusercontent.com'
+AUTH0_CLIENT_SECRET = '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'
+AUTH0_DOMAIN = 'http://localhost:8000.auth0.com'
+AUTH0_CALLBACK_URL = 'http://localhost:8000/callback/'
+AUTH0_LOGOUT_REDIRECT_URL = 'http://localhost:8000'
 
 
 # Internationalization
@@ -237,9 +248,11 @@ JAZZMIN_UI_TWEAKS = {
 
 LOGIN_URL = '/login/'
 
-AUTHENTICATION_BACKENDS = [
-    'oauth2_provider.backends.OAuth2Backend',
-    # Uncomment following if you want to access the admin
-    #'django.contrib.auth.backends.ModelBackend',
-    '...',
-]
+ENV_FILE = find_dotenv()
+if ENV_FILE:
+    load_dotenv(ENV_FILE)
+
+# Load Auth0 application settings into memory
+AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN")
+AUTH0_CLIENT_ID = os.environ.get("AUTH0_CLIENT_ID")
+AUTH0_CLIENT_SECRET = os.environ.get("AUTH0_CLIENT_SECRET")

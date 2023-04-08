@@ -27,4 +27,8 @@ urlpatterns = [
     path('update-startup/',views.updateStartup,name='update-startup'),
     path('join-startup/<int:id>/',views.joinStartupView,name='join-startup'),
     path('approve-team/<int:id>/',views.approveJoinStartup,name='approve-team'),
+    path('auth-login/',views.auth_login,name='auth-login'),
+    path("logout", views.logout, name="logout"),
+    path("callback", views.callback, name="callback"),
+
 ] 

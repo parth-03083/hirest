@@ -8,9 +8,22 @@ from django.template.loader import render_to_string
 from django.http import JsonResponse , HttpResponse
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
+import requests
+import os
+
+from authlib.integrations.django_client import OAuth
+from django.shortcuts import redirect, render
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import uuid
+# from dotenv import load_dotenv
+
+import hirest.settings  as settings
+
 # Create your views here.
 from .models import *
 
+# load_dotenv()
 
 def is_ajax(request):
   return request.headers.get('x-requested-with') == 'XMLHttpRequest'
@@ -25,6 +38,45 @@ def indexView(request):
     context={'jobs':jobs , 'is_hr':is_hr}
     
     return render(request,'home.html',context=context)
+
+
+oauth = OAuth()
+
+oauth.register(
+    "auth0",
+    client_id=settings.AUTH0_CLIENT_ID,
+    client_secret=settings.AUTH0_CLIENT_SECRET,
+    client_kwargs={
+        "scope": "openid profile email",
+    },
+    server_metadata_url=f"https://{settings.AUTH0_DOMAIN}/.well-known/openid-configuration",
+)
+
+def auth_login(request):
+    return oauth.auth0.authorize_redirect(
+        request, request.build_absolute_uri(reverse("callback"))
+    )
+
+def callback(request):
+    token = oauth.auth0.authorize_access_token(request)
+    request.session["user"] = token
+    return redirect(request.build_absolute_uri(reverse("index")))
+
+def logout(request):
+    request.session.clear()
+
+    return redirect(
+        f"https://{settings.AUTH0_DOMAIN}/v2/logout?"
+        + urlencode(
+            {
+                "returnTo": request.build_absolute_uri(reverse("index")),
+                "client_id": settings.AUTH0_CLIENT_ID,
+            },
+            quote_via=quote_plus,
+        ),
+    )
+
+
 
 def loginView(request):
     header = False
