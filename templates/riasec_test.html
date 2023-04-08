@@ -1,0 +1,741 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/css/educational_loans.min.css' %}"/>
+{% endblock %}
+{% block content %}
+
+<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Educational Loans</h2>
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">RAISEC Test</a></li>
+            </ol>
+        </div>
+
+
+    </div>
+</section>
+<div class="content">
+    <div class="container my-4">
+        <div class="row">
+            <div class="text-center mb-4">
+                <h3>Choose the right career for you</h3>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow p-2 ">
+                    <ul class="education-loan-indexes">
+                        <li data-target="#v-pills-one" class="nav-link link-item active"><a id="v-pills-one-tab" data-toggle="pill" href="#v-pills-one" role="tab" aria-controls="v-pills-one" aria-selected="true">What are Holland (RIASEC) Codes?</a></li>
+
+                        <li data-target="#v-pills-two" class="nav-link link-item"><a id="v-pills-two-tab" data-toggle="pill" href="#v-pills-two" role="tab" aria-controls="v-pills-two" aria-selected="true">R - Realistic </a></li>
+
+                        <li data-target="#v-pills-three" class="nav-link link-item"><a id="v-pills-three-tab" data-toggle="pill" href="#v-pills-three" role="tab" aria-controls="v-pills-three" aria-selected="true"> I - Investigative </a></li>
+
+                        <li data-target="#v-pills-four" class="nav-link link-item"><a id="v-pills-four-tab" data-toggle="pill" href="#v-pills-four" role="tab" aria-controls="v-pills-four" aria-selected="true">A - Artistic </a></li>
+
+                        <li data-target="#v-pills-five" class="nav-link link-item"><a id="v-pills-five-tab" data-toggle="pill" href="#v-pills-five" role="tab" aria-controls="v-pills-five" aria-selected="true"> S - Social </a></li>
+
+                        <li data-target="#v-pills-six" class="nav-link link-item"><a id="v-pills-six-tab" data-toggle="pill" href="#v-pills-six" role="tab" aria-controls="v-pills-six" aria-selected="true">E - Enterprising </a></li>
+
+                        <li data-target="#v-pills-seven" class="nav-link link-item"><a id="v-pills-seven-tab" data-toggle="pill" href="#v-pills-seven" role="tab" aria-controls="v-pills-seven" aria-selected="true">C - Conventional </a></li>
+
+                        <li data-target="#v-pills-eight" class="nav-link link-item"><a id="v-pills-eight-tab" data-toggle="pill" href="#v-pills-eight" role="tab" aria-controls="v-pills-eight" aria-selected="true">Take The Test?</a></li>
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-8">
+                <div class="card shadow ">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade shadow rounded bg-white show active" id="v-pills-one" role="tabpanel" aria-labelledby="v-pills-one-tab">
+                            <div id="one" class="p-4">
+                                <h5 class="mb-4">What are Holland (RIASEC) Codes?</h5>
+                                <p>
+                                    John L. Holland, a psychologist and professor at John Hopkins University, believed that a person's
+                                    personality aligns with the types of careers they are drawn to. He developed the Holland Occupational Themes, also known as the Holland Codes (RIASEC), as a way to help people choose their careers. RIASEC stands for Realistic, Investigative, Artistic, Social, Enterprising, and Conventional. The career keys are organized and classified according to college majors, career
+                                </p>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade shadow rounded bg-white" id="v-pills-two" role="tabpanel" aria-labelledby="v-pills-two-tab">
+                            <div id="two" class="p-4">
+                                <h5 class="mb-4"> R - Realistic (the Doers)</h5>
+                                <p>
+                                    The Realistic type Holland Code refers to individuals who are DOERS and are interested in hands-on, practical activities that involve the use of tools, machines, and other physical materials. These individuals tend to be strong in physical abilities, such as manual dexterity, and may prefer to work with their hands or in technical fields. They are often practical, realistic, and prefer to work with things rather than people. Careers that may be suitable for individuals with a Realistic Holland Code include mechanic, engineer, carpenter, and electricians.
+                                </p>
+                                <a href="/career-explore/?code=R" class=" btn-outline-primary btn shadow ">Explore Matching R Careers </a>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade shadow rounded bg-white" id="v-pills-three" role="tabpanel" aria-labelledby="v-pills-three-tab">
+                            <div id="three" class="p-4">
+                                <h5 class="mb-4"> I - Investigative (the Thinkers) </h5>
+                                <p>
+                                    The Investigative type Holland Code refers to individuals who are THINKERS and are interested in research, investigation, and intellectual pursuits. These individuals tend to be analytical, curious, and systematic, and may prefer to work in environments that allow them to gather and analyze information. They may be drawn to careers in science, research, or academia. Careers that may be suitable for individuals with an Investigative Holland Code include scientist, researcher, analyst, and engineer.
+                                </p>
+                                <a href="/career-explore/?code=I" class=" btn-outline-primary btn shadow ">Explore Matching I Careers </a>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade shadow rounded bg-white" id="v-pills-four" role="tabpanel" aria-labelledby="v-pills-four-tab">
+                            <div id="four" class="p-4">
+                                <h5 class="mb-4"> A - Artistic (the Creators) </h5>
+                                <p>
+                                    The Artistic type Holland Code refers to individuals who are the CREATORS and are interested in creative, original, and expressive work. These individuals tend to be intuitive and innovative, and may be drawn to careers in the arts, such as music, writing, or acting. They may also be interested in careers that involve creative problem-solving, such as design or advertising. Careers that may be suitable for individuals with an Artistic Holland Code include artist, musician, writer, and actor.
+                                </p>
+                                <a href="/career-explore/?code=A" class=" btn-outline-primary btn shadow ">Explore Matching A Careers </a>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade shadow rounded bg-white" id="v-pills-five" role="tabpanel" aria-labelledby="v-pills-five-tab">
+                            <div id="five" class="p-4">
+                                <h5 class="mb-4"> S - Social (the Helpers) </h5>
+                                <p>
+                                    The Enterprising type Holland Code refers to individuals who are the PERSUADERS and are interested in careers in leadership, entrepreneurship, and business. These individuals tend to be ambitious, energetic, and confident, and may be drawn to careers in business, sales, or marketing. They may also be interested in careers that involve taking on leadership roles or starting their own businesses. Careers that may be suitable for individuals with an Enterprising Holland Code include business owner, salesperson, manager, and marketing professional.
+                                </p>
+                                <a href="/career-explore/?code=S" class=" btn-outline-primary btn shadow ">Explore Matching S Careers </a>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade shadow rounded bg-white" id="v-pills-six" role="tabpanel" aria-labelledby="v-pills-six-tab">
+                            <div id="six" class="p-4">
+                                <h5 class="mb-4"> E - Enterprising (the Persuaders) </h5>
+                                <p>
+                                    The Enterprising type Holland Code refers to individuals who are the PERSUADERS and are interested in careers in leadership, entrepreneurship, and business. These individuals tend to be ambitious, energetic, and confident, and may be drawn to careers in business, sales, or marketing. They may also be interested in careers that involve taking on leadership roles or starting their own businesses. Careers that may be suitable for individuals with an Enterprising Holland Code include business owner, salesperson, manager, and marketing professional.
+                                </p>
+                                <a href="/career-explore/?code=E" class=" btn-outline-primary btn shadow ">Explore Matching E Careers </a>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade shadow rounded bg-white" id="v-pills-seven" role="tabpanel" aria-labelledby="v-pills-seven-tab">
+                            <div id="seven" class="p-4">
+                                <h5 class="mb-4"> C - Conventional (the Organizers) </h5>
+                                <p>
+                                    The Conventional type Holland Code refers to individuals who are the ORGANIZERS and are interested in working with data, rules, and systems. These individuals tend to be organized, detail-oriented, and efficient, and may be drawn to careers that involve working with numbers or information. They may also be interested in careers that involve following established procedures and systems, such as accounting or office management. Careers that may be suitable for individuals with a Conventional Holland Code include accountant, data analyst, clerk, and administrative assistant.
+                                </p>
+                                <a href="/career-explore/?code=C" class=" btn-outline-primary btn shadow ">Explore Matching C Careers </a>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade shadow rounded bg-white" id="v-pills-eight" role="tabpanel" aria-labelledby="v-pills-eight-tab">
+                            <div id="eight" class="p-4">
+                                <h5 class="mb-4"> Take The Test </h5>
+                                <p>
+                                    The Holland Interest Profiler test is easy to take. It consists of 42 tasks/statements with a Yes/No answer. It is important to note that there are no wrong answers, and the test has no time limits. All you have to do is to read the statements carefully and provide an honest answer. The general rule is that for each task or statement you will need to answer it based on whether you like to do it or not. If you like it choose Yes, and if you dislike, simply choose No. Simply answer all the 42 tasks and submit to see your RIASEC Interest profile. Using your Holland Interest Profile, the platform will guide you to match the right careers, majors and top colleges that are most likely suitable to your abilities, interest, skills and traits.
+                                </p>
+                                <p>
+                                    Select Yes to indicate if you are/were good (or like) the task or No otherwise -
+                                </p>
+                                <form action="" role="form">
+                                    <div class="panel panel-primary setup-content" id="step-1">
+                                        <div class="panel-heading">
+                                             <h3 class="panel-title">Question Set-1</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to work on cars </span>
+                                                <span>
+                                                    <input type="radio" id="question-1-yes" required name="question-1" value="R" class="r-question">
+                                                    <label for="question-1-yes">Yes</label>
+                                                    <input type="radio" id="question-1-no" name="question-1" value="">
+                                                    <label for="question-1-no">No</label><br>
+
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to do puzzles </span>
+                                                <span>
+                                                    <input type="radio" id="question-2-yes" required name="question-2" value="I" class="i-question">
+                                                    <label for="question-2-yes">Yes</label>
+                                                    <input type="radio" id="question-2-no" name="question-2" value="">
+                                                    <label for="question-2-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary">I am good at working independently </span>
+                                                <span>
+                                                    <input type="radio" id="question-3-yes" required name="question-3" value="A" class="a-question">
+                                                    <label for="question-3-yes">Yes</label>
+                                                    <input type="radio" id="question-3-no" name="question-3" value="">
+                                                    <label for="question-3-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to work in teams </span>
+                                                <span>
+                                                    <input type="radio" id="question-4-yes" required name="question-4" value="S" class="s-question">
+                                                    <label for="question-4-yes">Yes</label>
+                                                    <input type="radio" id="question-4-no" name="question-4" value="">
+                                                    <label for="question-4-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I am an ambitious person,I set goals for myself </span>
+                                                <span>
+                                                    <input type="radio" id="question-5-yes" required name="question-5" value="E" class="e-question">
+                                                    <label for="question-5-yes">Yes</label>
+                                                    <input type="radio" id="question-5-no" name="question-5" value="">
+                                                    <label for="question-5-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to organize things,(files, desks/offices) </span>
+                                                <span>
+                                                    <input type="radio" id="question-6-yes" required name="question-6" value="C" class="c-question">
+                                                    <label for="question-6-yes">Yes</label>
+                                                    <input type="radio" id="question-6-no" name="question-6" value="">
+                                                    <label for="question-6-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to build things </span>
+                                                <span>
+                                                    <input type="radio" id="question-7-yes" required name="question-7" value="R" class="r-question">
+                                                    <label for="question-7-yes">Yes</label>
+                                                    <input type="radio" id="question-7-no" name="question-7" value="">
+                                                    <label for="question-7-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to read about art and music </span>
+                                                <span>
+                                                    <input type="radio" id="question-8-yes" required name="question-8" value="A" class="a-question">
+                                                    <label for="question-8-yes">Yes</label>
+                                                    <input type="radio" id="question-8-no" name="question-8" value="">
+                                                    <label for="question-8-no">No</label><br>
+                                                </span>
+                                            </div>
+
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to have clear instructions to follow </span>
+                                                <span>
+                                                    <input type="radio" id="question-9-yes" required name="question-9" value="C" class="c-question">
+                                                    <label for="question-9-yes">Yes</label>
+                                                    <input type="radio" id="question-9-no" name="question-9" value="">
+                                                    <label for="question-9-no">No</label><br>
+                                                </span>
+                                            </div>
+
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to try to influence or persuade people </span>
+                                                <span>
+                                                    <input type="radio" id="question-10-yes" required name="question-10" value="E" class="e-question">
+                                                    <label for="question-10-yes">Yes</label>
+                                                    <input type="radio" id="question-10-no" name="question-10" value="">
+                                                    <label for="question-10-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <button class="btn btn-primary moveBtn " type="button" data-target="#step-2" aria-controls="#step-1">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-primary setup-content d-none" tab="hide" id="step-2">
+                                        <div class="panel-heading">
+                                             <h3 class="panel-title">Question Set-2</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to do experiments </span>
+                                                <span>
+                                                    <input type="radio" id="question-11-yes" required name="question-11" value="I" class="i-question">
+                                                    <label for="question-11-yes">Yes</label>
+                                                    <input type="radio" id="question-11-no" name="question-11" value="">
+                                                    <label for="question-11-no">No</label><br>
+
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to teach or train people </span>
+                                                <span>
+                                                    <input type="radio" id="question-12-yes" required name="question-12" value="S" class="s-question">
+                                                    <label for="question-12-yes">Yes</label>
+                                                    <input type="radio" id="question-12-no" name="question-12" value="">
+                                                    <label for="question-12-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary">I like trying to help people solve their problems </span>
+                                                <span>
+                                                    <input type="radio" id="question-13-yes" required name="question-13" value="S" class="s-question">
+                                                    <label for="question-13-yes">Yes</label>
+                                                    <input type="radio" id="question-13-no" name="question-13" value="">
+                                                    <label for="question-13-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to take care of animals </span>
+                                                <span>
+                                                    <input type="radio" id="question-14-yes" required name="question-14" value="R" class="r-question">
+                                                    <label for="question-14-yes">Yes</label>
+                                                    <input type="radio" id="question-14-no" name="question-14" value="">
+                                                    <label for="question-14-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I wouldn't mind working 8 hours per day in an office </span>
+                                                <span>
+                                                    <input type="radio" id="question-15-yes" required name="question-15" value="C" class="c-question">
+                                                    <label for="question-15-yes">Yes</label>
+                                                    <input type="radio" id="question-15-no" name="question-15" value="">
+                                                    <label for="question-15-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like selling things </span>
+                                                <span>
+                                                    <input type="radio" id="question-16-yes" required name="question-16" value="E" class="e-question">
+                                                    <label for="question-16-yes">Yes</label>
+                                                    <input type="radio" id="question-16-no" name="question-16" value="">
+                                                    <label for="question-16-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I enjoy creative writing </span>
+                                                <span>
+                                                    <input type="radio" id="question-17-yes" required name="question-17" value="A" class="a-question">
+                                                    <label for="question-17-yes">Yes</label>
+                                                    <input type="radio" id="question-17-no" name="question-17" value="">
+                                                    <label for="question-17-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I enjoy science </span>
+                                                <span>
+                                                    <input type="radio" id="question-18-yes" required name="question-18" value="I" class="i-question">
+                                                    <label for="question-18-yes">Yes</label>
+                                                    <input type="radio" id="question-18-no" name="question-18" value="">
+                                                    <label for="question-18-no">No</label><br>
+                                                </span>
+                                            </div>
+
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I am quick to take on new responsibilities </span>
+                                                <span>
+                                                    <input type="radio" id="question-19-yes" required name="question-19" value="E" class="e-question">
+                                                    <label for="question-19-yes">Yes</label>
+                                                    <input type="radio" id="question-19-no" name="question-19" value="">
+                                                    <label for="question-19-no">No</label><br>
+                                                </span>
+                                            </div>
+
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I am interested in healing people </span>
+                                                <span>
+                                                    <input type="radio" id="question-20-yes" required name="question-20" value="S" class="s-question">
+                                                    <label for="question-20-yes">Yes</label>
+                                                    <input type="radio" id="question-20-no" name="question-20" value="">
+                                                    <label for="question-20-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+
+                                                <button class="btn btn-primary moveBtn " type="button" data-target="#step-1" aria-controls="#step-2" >Previous</button>
+                                                
+                                                <button class="btn btn-primary moveBtn " type="button" aria-controls="#step-2" data-target="#step-3">Next</button>
+                                            </div>
+                                                
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-primary setup-content d-none" tab="hide" id="step-3">
+                                        <div class="panel-heading">
+                                             <h3 class="panel-title">Question Set-3</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I enjoy trying to figure out how things work </span>
+                                                <span>
+                                                    <input type="radio" id="question-21-yes" required name="question-21" value="I" class="i-question">
+                                                    <label for="question-21-yes">Yes</label>
+                                                    <input type="radio" id="question-21-no" name="question-21" value="">
+                                                    <label for="question-21-no">No</label><br>
+
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like putting things together or assembling things </span>
+                                                <span>
+                                                    <input type="radio" id="question-22-yes" required name="question-22" value="R" class="r-question">
+                                                    <label for="question-22-yes">Yes</label>
+                                                    <input type="radio" id="question-22-no" name="question-22" value="">
+                                                    <label for="question-22-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary">I am a creative person </span>
+                                                <span>
+                                                    <input type="radio" id="question-23-yes" required name="question-23" value="A" class="a-question">
+                                                    <label for="question-23-yes">Yes</label>
+                                                    <input type="radio" id="question-23-no" name="question-23" value="">
+                                                    <label for="question-23-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I pay attention to details </span>
+                                                <span>
+                                                    <input type="radio" id="question-24-yes" required name="question-24" value="C" class="c-question">
+                                                    <label for="question-24-yes">Yes</label>
+                                                    <input type="radio" id="question-24-no" name="question-24" value="">
+                                                    <label for="question-24-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to do filing or typing </span>
+                                                <span>
+                                                    <input type="radio" id="question-25-yes" required name="question-25" value="C" class="c-question">
+                                                    <label for="question-25-yes">Yes</label>
+                                                    <input type="radio" id="question-25-no" name="question-25" value="">
+                                                    <label for="question-25-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to analyze things (problems/situations) </span>
+                                                <span>
+                                                    <input type="radio" id="question-26-yes" required name="question-26" value="I" class="i-question">
+                                                    <label for="question-26-yes">Yes</label>
+                                                    <input type="radio" id="question-26-no" name="question-26" value="">
+                                                    <label for="question-26-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to play instruments or sing </span>
+                                                <span>
+                                                    <input type="radio" id="question-27-yes" required name="question-27" value="A" class="a-question">
+                                                    <label for="question-27-yes">Yes</label>
+                                                    <input type="radio" id="question-27-no" name="question-27" value="">
+                                                    <label for="question-27-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I enjoy learning about other cultures. </span>
+                                                <span>
+                                                    <input type="radio" id="question-28-yes" required name="question-28" value="S" class="s-question">
+                                                    <label for="question-28-yes">Yes</label>
+                                                    <input type="radio" id="question-28-no" name="question-28" value="">
+                                                    <label for="question-28-no">No</label><br>
+                                                </span>
+                                            </div>
+
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I would like to start my own business </span>
+                                                <span>
+                                                    <input type="radio" id="question-29-yes" required name="question-29" value="E" class="e-question">
+                                                    <label for="question-29-yes">Yes</label>
+                                                    <input type="radio" id="question-29-no" name="question-29" value="">
+                                                    <label for="question-29-no">No</label><br>
+                                                </span>
+                                            </div>
+
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to cook </span>
+                                                <span>
+                                                    <input type="radio" id="question-30-yes" required name="question-30" value="R" class="r-question">
+                                                    <label for="question-30-yes">Yes</label>
+                                                    <input type="radio" id="question-30-no" name="question-30" value="">
+                                                    <label for="question-30-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+
+                                                <button class="btn btn-primary moveBtn " type="button" data-target="#step-2" aria-controls="#step-3" >Previous</button>
+                                                <button class="btn btn-primary moveBtn " type="button" aria-controls="#step-3" data-target="#step-4">Next</button>
+                                            </div>
+                                                
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-primary setup-content d-none" tab="hide" id="step-4">
+                                        <div class="panel-heading">
+                                             <h3 class="panel-title">Question Set-4</h3>
+                                             <div class="d-none text-danger" id=""> All the Questions Are mandetory </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like acting in plays </span>
+                                                <span>
+                                                    <input type="radio" id="question-31-yes" required name="question-31" value="A" class="a-question">
+                                                    <label for="question-31-yes">Yes</label>
+                                                    <input type="radio" id="question-31-no" name="question-31" value="">
+                                                    <label for="question-31-no">No</label><br>
+
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I am a practical person </span>
+                                                <span>
+                                                    <input type="radio" id="question-32-yes" required name="question-32" value="R" class="r-question">
+                                                    <label for="question-32-yes">Yes</label>
+                                                    <input type="radio" id="question-32-no" name="question-32" value="">
+                                                    <label for="question-32-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary">I like working with numbers or charts</span>
+                                                <span>
+                                                    <input type="radio" id="question-33-yes" required name="question-33" value="I" class="i-question">
+                                                    <label for="question-33-yes">Yes</label>
+                                                    <input type="radio" id="question-33-no" name="question-33" value="">
+                                                    <label for="question-33-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to get into discussions about issues </span>
+                                                <span>
+                                                    <input type="radio" id="question-34-yes" required name="question-34" value="S" class="s-question">
+                                                    <label for="question-34-yes">Yes</label>
+                                                    <input type="radio" id="question-34-no" name="question-34" value="">
+                                                    <label for="question-34-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I am good at keeping records of my work </span>
+                                                <span>
+                                                    <input type="radio" id="question-35-yes" required name="question-35" value="C" class="c-question">
+                                                    <label for="question-35-yes">Yes</label>
+                                                    <input type="radio" id="question-35-no" name="question-35" value="">
+                                                    <label for="question-35-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to lead </span>
+                                                <span>
+                                                    <input type="radio" id="question-36-yes" required name="question-36" value="E" class="e-question">
+                                                    <label for="question-36-yes">Yes</label>
+                                                    <input type="radio" id="question-36-no" name="question-36" value="">
+                                                    <label for="question-36-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like working outdoors </span>
+                                                <span>
+                                                    <input type="radio" id="question-37-yes" required name="question-37" value="R" class="r-question">
+                                                    <label for="question-37-yes">Yes</label>
+                                                    <input type="radio" id="question-37-no" name="question-37" value="">
+                                                    <label for="question-37-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I would like to work in an office. </span>
+                                                <span>
+                                                    <input type="radio" id="question-38-yes" required name="question-38" value="C" class="c-question">
+                                                    <label for="question-38-yes">Yes</label>
+                                                    <input type="radio" id="question-38-no" name="question-38" value="">
+                                                    <label for="question-38-no">No</label><br>
+                                                </span>
+                                            </div>
+
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I'm good at math </span>
+                                                <span>
+                                                    <input type="radio" id="question-39-yes" required name="question-39" value="I" class="i-question">
+                                                    <label for="question-39-yes">Yes</label>
+                                                    <input type="radio" id="question-39-no" name="question-39" value="">
+                                                    <label for="question-39-no">No</label><br>
+                                                </span>
+                                            </div>
+
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like helping people </span>
+                                                <span>
+                                                    <input type="radio" id="question-40-yes" required name="question-40" value="S" class="s-question">
+                                                    <label for="question-40-yes">Yes</label>
+                                                    <input type="radio" id="question-40-no" name="question-40" value="">
+                                                    <label for="question-40-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to draw </span>
+                                                <span>
+                                                    <input type="radio" id="question-41-yes" required name="question-41" value="A" class="a-question">
+                                                    <label for="question-41-yes">Yes</label>
+                                                    <input type="radio" id="question-41-no" name="question-41" value="">
+                                                    <label for="question-41-no">No</label><br>
+
+                                                </span>
+                                            </div>
+                                            <div class="form-group justify-content-between d-flex">
+                                                <span class="text-secondary"> I like to give    speeches </span>
+                                                <span>
+                                                    <input type="radio" id="question-42-yes" required name="question-42" value="E" class="e-question">
+                                                    <label for="question-42-yes">Yes</label>
+                                                    <input type="radio" id="question-42-no" name="question-42" value="">
+                                                    <label for="question-42-no">No</label><br>
+                                                </span>
+                                            </div>
+                                            
+                                            <div class="d-flex justify-content-between">
+                                                <button class="btn btn-primary moveBtn float-right" type="button" data-target="#step-3" aria-controls="#step-4" >Previous</button>
+
+                                                <button class="btn btn-primary float-right" type="submit"> Submit </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result-container d-none shadow show active rounded bg-white p-4">
+                        <h5 class="mb-4">Your RIASEC Test Result</h5>
+                        <p>These are your Holland Interest Profiler test results. The scores for each of the interest profiles are mentioned alongside the bars.</p>
+                        <canvas id="result-chart"></canvas>
+                        <p class="text-center">Based on your results, your top 3 Interest Markers are <span id="r1"></span> <span id="r2"></span> <span id="r3"></span> </p>
+
+                        <a href="" class="btn btn-primary rounded shadow" id="explore-btn">Explore Matching Careers</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'assets/vendor/sweetalert2/sweetalert2.min.js' %}"></script>
+<script>
+    $(".link-item").click(function(e){
+        e.preventDefault();
+    })
+      $(".nav-link").click(function (e) {
+        // e.preventDefault();
+    $('.nav-link').each(function(i, el) {
+        $(el).removeClass('active');
+    })
+    $(this).addClass('active');
+
+    $('.tab-pane').each(function(i, el){
+        $(el).removeClass('active');
+        $(el).removeClass('show');
+    });
+    var tab = $(this).attr('data-target');
+
+    $(tab).addClass('active');
+    $(tab).addClass('show');
+    });
+
+    $(".moveBtn").click( function(e){
+        var target=$(this).attr('data-target');
+        var curr = $(this).attr('aria-controls');
+        if (validate(curr)){
+            $(curr).addClass('d-none');
+            $(target).removeClass('d-none');
+        }
+        else{
+            Swal.fire({
+                icon: 'question',
+                text: 'Please answer all the questions',
+            })
+        }
+    } );
+    function validate(curr){
+        var valid = true;
+        if ($(curr).find('input:checked').length < $(curr).find('input').length/2){
+            valid = false;
+        }
+        return valid;
+    }
+
+    var rValList=0,iValList=0,aValList=0,sValList=0,eValList=0,cValList = 0;
+
+    $('form').on('submit',function(e){
+        e.preventDefault();
+        console.log('form');
+        $('.r-question:checked').each(function(i, el){
+            rValList++;
+        });
+        $('.i-question:checked').each(function(i, el){
+            iValList++;
+        });
+        $('.a-question:checked').each(function(i, el){
+            aValList++;
+        });
+        $('.s-question:checked').each(function(i, el){
+            sValList++;
+        });
+        $('.e-question:checked').each(function(i, el){
+            eValList++;
+        });
+        $('.c-question:checked').each(function(i, el){
+            cValList++;
+        });
+
+        console.log('rValList',rValList);
+        console.log('iValList',iValList);
+        console.log('aValList',aValList);
+        console.log('sValList',sValList);
+        console.log('eValList',eValList);
+        console.log('cValList',cValList);
+
+        resultArr=[{name:'R',value:rValList},{name:'I',value:iValList},{name:'A',value:aValList},{name:'S',value:sValList},{name:'E',value:eValList},{name:'C',value:cValList}];
+        resultArr.sort(function(a,b){
+            return parseInt(b.value) - parseInt(a.value);
+        });
+        console.log(resultArr);
+        $('.tab-content').addClass('d-none');
+
+        var canvas = $('#result-chart');
+        const labels = [    
+            'Realistic',
+            'Investigative',
+            'Artistic',
+            'Social',
+            'Enterprising',
+            'Conventional'
+        ];
+        const data = {
+        labels: labels,
+        datasets: [{
+            axis: 'y',
+            label: 'RIASEC Test Result',
+            data: [rValList, iValList, aValList, sValList, eValList, cValList],
+            backgroundColor: [
+            'rgba(255, 99, 132,0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(255, 99, 132,0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)'
+            ],
+            borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)'
+            ],
+            borderWidth: 1
+        }]
+        };
+        var testChart = new Chart(canvas, {
+            'type': 'horizontalBar',
+            'data': data,
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            stepSize: 1,
+                            beginAtZero: true,
+                        }
+                    }]
+                }
+            },
+        });
+        $('#r1').text(resultArr[0].name);
+        $('#r2').text(resultArr[1].name);
+        $('#r3').text(resultArr[2].name);
+        $('#explore-btn').attr('href',`/career-explore/?code=${resultArr[0].name},${resultArr[1].name},${resultArr[2].name}`);
+        $('.result-container').removeClass('d-none');
+
+});
+
+
+</script>
+{% endblock %}
