@@ -49,7 +49,7 @@
 {% block js %}
 <script>
     $(document).ready(function(){
-        $('delete-job').on('click', function(e){
+        $('.delete-job').on('click', function(e){
             e.preventDefault();
             id = $(this).attr('data-job-id');
             console.log("====id-is====",id)
@@ -57,7 +57,7 @@
                 type:"GET",
                 url:'/delete-job/'+id,
                 success: function(response){
-                    window.reload();
+                    location.reload();
                 }
             });
         });

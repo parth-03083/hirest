@@ -1,5 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+/* font-family: 'Oswald', sans-serif; */
+/* font-family: 'Open Sans', sans-serif; */
 .login-page-img {
     width: 100%;
     height: auto;
-    margin-top: 70px;
+    /* margin-top: 70px; */
+}
+
+.brand-logo{
+    font-family: 'Oswald', sans-serif;
+}
+
+.page-title{
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
 }

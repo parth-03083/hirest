@@ -235,7 +235,7 @@ def jobApplicantsView(request,id):
 
 @login_required(login_url='login')
 def viewUserProfileView(request,id):
-    if ishr(request.user) and :
+    if ishr(request.user):
         user = User.objects.get(id=id)
         user_profile=MyProfile.objects.get(user=user)
         context={'user':user,'user_profile':user_profile}

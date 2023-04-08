@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,42 +22,44 @@
 
 
 </head>
-
-<body>
+<body> 
     
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">Hirest</a>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link scroll-target" href="{% url 'jobs' %}">Jobs</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link scroll-target" href="{% url 'startups' %}">StartUps</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link scroll-target" href="{% url 'internships' %}">Internship</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link " href="#">Blog</a>
-              </li>
-
-        </div>
+            {% comment %} <ul class="navbar-nav"> {% endcomment %}
+          </div>
         <div class="profile">
             {% if not request.user.is_authenticated %}
                 <a href="{% url 'login' %}"><button type="button" class="btn btn-success m-2">Login</button></a>
                 <a href="{% url 'register' %}"><button type="button" class="btn btn-secondary m-2">SignUp</button></a>
             {% else %}
-            <div class="profile text-white">
-                
-                    <span><i class="bi bi-person-circle"></i> {{ request.user.username }} </span>
-                    <a href="{% url 'logout' %}"><button type="button" class="btn btn-secondary m-2">Logout</button></a>
+            <div class="profile text-white d-flex align-items-center">
+                    <a class="nav-link text-white " href="#">Blog</a>
+
+
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <span class="text-white"><i class="bi bi-person-circle"></i> {{ request.user.username }} </span>  
+          </button>
+          <ul class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'jobs' %}">jobs</a>
+                          <li>
+                          
+                          <a class="dropdown-item" href="{% url 'jobs' %}">jobs</a>
+                          </li>
+                          <li>
+                          
+                          <a class="dropdown-item" href="{% url 'jobs' %}">jobs</a>
+                          </li>
+                          <li>
+                            <a href="{% url 'logout' %}"><button type="button" class="btn btn-secondary m-2">Logout</button></a>
+                          
+                          </li>
+          </ul>
+        </div>
+
             </div>
             {% endif %}
         </div>
@@ -70,58 +74,83 @@
                     <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
                         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                             <li class="nav-item">
-                                <a href="/" class="nav-link align-middle px-0">
+                                <a href="/" class="nav-link align-middle py-2 px-0">
                                     <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
                                 </a>
                             </li>
             
                             <li>
-                                <a href="{% url 'my-profile' %}" class="nav-link px-0 align-middle">
+                                <a href="{% url 'my-profile' %}" class="nav-link py-2 px-0 align-middle">
                                     <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">My Profile</span></a>
                             </li>
                         
                         
                             <li>
-                                <a href="{% url 'my-applied' %}" class="nav-link px-0 align-middle">
-                                    <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Applied Positions</span> </a>
+                                <a href="{% url 'my-applied' %}" class="nav-link py-2 px-0 align-middle">
+                                    <i class="fs-4 bi bi-box-arrow-in-up"></i> <span class="ms-1 d-none d-sm-inline">Applied Positions</span> </a>
                             </li>
                             
                             <li>
-                                <a href="{% url 'post-job' %}" class="nav-link px-0 align-middle">
-                                  <i class="fs-4 bi-people"></i>
+                                <a href="{% url 'post-job' %}" class="nav-link py-2 px-0 align-middle">
+                                  <i class="fs-4 bi bi-plus-square"></i>
                                   <span class="ms-1 d-none d-sm-inline">Post Job</span>
                                 </a>
                             </li>
                             <li>
-                              <a href="{% url 'job-search' %}" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-book"></i>
+                              <a href="{% url 'job-search' %}" class="nav-link py-2 px-0 align-middle">
+                                <i class="fs-4 bi bi-search"></i>
                                 <span class="ms-1 d-none d-sm-inline">Search Jobs</span>
                               </a>
                             </li>
 
                             <li>
-                              <a href="{% url 'manage-jobs' %}" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-book"></i>
+                              <a href="{% url 'manage-jobs' %}" class="nav-link py-2 px-0 align-middle">
+                                <i class="fs-4 bi-pen"></i>
                                 <span class="ms-1 d-none d-sm-inline">Manage Jobs</span>
                               </a>
                             </li>
 
                           <li>
-                            <a href="{% url 'create-company' %}" class="nav-link px-0 align-middle">
+                            <a href="{% url 'create-company' %}" class="nav-link py-2 px-0 align-middle">
                               <i class="fs-4 bi-building"></i>
                               <span class="ms-1 d-none d-sm-inline">Create Company</span>
                             </a>
                         </li>
                         
                         <li>
-                          <a href="{% url 'update-company' %}" class="nav-link px-0 align-middle">
+                          <a href="{% url 'update-company' %}" class="nav-link py-2 px-0 align-middle">
                             <i class="fs-4 bi-building"></i>
                             <span class="ms-1 d-none d-sm-inline">Update Company</span>
                           </a>
                       </li>
+                        <li>
+                          <a href="{% url 'jobs' %}" class="nav-link py-2 px-0 align-middle">
+                            <i class="fs-4 bi-briefcase"></i>
+                            <span class="ms-1 d-none d-sm-inline">Jobs</span>
+                          </a>
+                      </li>
                       
-
-
+                        <li>
+                          <a href="{% url 'startups' %}" class="nav-link py-2 px-0 align-middle">
+                            <i class="fs-4 bi-building"></i>
+                            <span class="ms-1 d-none d-sm-inline">Start Ups </span>
+                          </a>
+                      </li>
+                      
+                        <li>
+                          <a href="{% url 'internships' %}" class="nav-link py-2 px-0 align-middle">
+                            <i class="fs-4 bi-award"></i>
+                            <span class="ms-1 d-none d-sm-inline">Internships</span>
+                          </a>
+                      </li>
+                      
+                        {% comment %} <li>
+                          <a href="{% url 'update-company' %}" class="nav-link py-2 px-0 align-middle">
+                            <i class="fs-4 bi-building"></i>
+                            <span class="ms-1 d-none d-sm-inline">Update Company</span>
+                          </a>
+                      </li> {% endcomment %}
+                      
                         </ul>
                         <hr>
                     </div>

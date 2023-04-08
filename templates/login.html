@@ -1,6 +1,5 @@
-{% load tags %}
-{% block content %}
 {% load static %}
+{% load tags %}
 
 
 <!DOCTYPE html>
@@ -45,19 +44,22 @@
 	<!-- Outer Row -->
 	<div class="row justify-content-center align-items-center">
 		<div class="col-xl-10 col-lg-12 col-md-9">
-			<div class="card o-hidden border-0 shadow-lg my-5">
+			<div class="card o-hidden border-0 shadow-lg my-5 ">
 				<div class="card-body p-0">
 					<!-- Nested Row within Card Body -->
+					
 					<div class="row mx-0">
-						<div class="col-lg-6 d-none  d-lg-block bg-login-image">
+					<div class="text-center mt-5">
+									<h1 class="brand-logo">HIREST</h1>
+									{% comment %} <p class="h4 text-black font-weight-bold page-title">Login</p> {% endcomment %}
+					</div>
+					<div class="row d-flex" ></div>
+					<div class="col-lg-6 d-none  d-lg-block bg-login-image">
 							<img class="login-page-img " src="{% static 'assets/img/login.png' %}" alt="Login Banner Image"/>
-						</div>
-						<div class="col-lg-6 px-0">
-							<div class="py-5 px-4">
-								<div class="text-center">
-									<h1><a href="#">HIREST</a></h1>
-									<p class="h4 text-black font-weight-bold mt-5 mb-2">Login</p>
-								</div>
+					</div>
+					<div class="col-lg-6 my-auto ">
+							<div class="p-4">
+								
 								<form class="user" method="post">
 									{% csrf_token %}
 									<input type="hidden" name="next" value="{{request.META.HTTP_REFERER}}"/>
@@ -101,11 +103,9 @@
 
 </section>
 </body>
-{% endblock %}
-{% block js %}
+
 <script>
 	$(document).ready(function (){
 		$('#main').addClass('background-gradient');
 	});
 </script>
-{% endblock %}
