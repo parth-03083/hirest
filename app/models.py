@@ -11,7 +11,7 @@ class Skills(models.Model):
 
 class Company(models.Model):
     name = models.CharField(max_length=100)
-    logo = models.ImageField(upload_to='uploads/company/',blank=True, null=True)
+    logo = models.ImageField(upload_to='media/company/',blank=True, null=True)
     website = models.CharField(max_length=100,blank=True, null=True)
     Employee = models.IntegerField(blank=True, null=True)
     founded_date = models.DateTimeField(blank=True, null=True)
@@ -39,7 +39,7 @@ class MyProfile(models.Model):
 class Job(models.Model):
     title=models.CharField(max_length=500,blank=True, null=True)
     company_name=models.ForeignKey(Company,on_delete=models.CASCADE , null=True)
-    category = models.CharField(max_length=100,blank=True,null=True)
+    category = models.CharField(max_length=100,blank=True,null=True) 
     skills=models.ManyToManyField(Skills,blank=True,null=True)
     salary=models.BigIntegerField(blank=True, null=True)
     rank=models.IntegerField(blank=True,null=True)
