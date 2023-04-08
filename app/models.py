@@ -90,7 +90,6 @@ class Internships(models.Model):
     posted_date=models.DateTimeField(auto_now_add=True)
     last_date=models.DateTimeField(blank=True, null=True)
 
-
     class Meta:
         ordering = ['rank']
 
