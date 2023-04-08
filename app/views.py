@@ -131,6 +131,8 @@ def myProfileView(request):
             if request.user.is_authenticated and MyProfile(user=request.user):
                 obj = MyProfile.objects.get(user=request.user)
                 form = ProfileForm(request.POST , instance=obj)
+            elif not request.user.is_authenticated:
+                return redirect('login')
             else:
                 form = ProfileForm(request.POST)
             if form.is_valid():
