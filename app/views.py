@@ -121,6 +121,8 @@ def createProfileView(request):
 def myProfileView(request):
     skillform = SkillForm()
     try:
+        if not request.user.is_authenticated:
+            return redirect('login')
         if request.user.is_authenticated and MyProfile(user=request.user):
                 obj = MyProfile.objects.get(user=request.user)
                 form = ProfileForm(instance=obj)
