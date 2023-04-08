@@ -23,4 +23,4 @@ urlpatterns = [
     path('job-search/',views.searchJobs,name='job-search'),
     path('add_skill/',views.addSkillView,name='add_skill'),
     path('add-profile/',views.createProfileView,name='add-profile'),
-]
+] 

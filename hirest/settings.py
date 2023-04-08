@@ -187,6 +187,13 @@ JAZZMIN_SETTINGS = {
         "auth.group": "vertical_tabs",
     },
 }
+
+
+STATIC_URL = 'static/'
+STATICFILES_DIRS=[BASE_DIR/"static"]
+
+
+
 JAZZMIN_UI_TWEAKS = {
     "navbar_small_text": False,
     "footer_small_text": False,
