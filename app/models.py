@@ -39,6 +39,7 @@ class MyProfile(models.Model):
 class Job(models.Model):
     title=models.CharField(max_length=500,blank=True, null=True)
     company_name=models.ForeignKey(Company,on_delete=models.CASCADE , null=True)
+    category = models.CharField(max_length=100,blank=True,null=True)
     skills=models.ManyToManyField(Skills,blank=True,null=True)
     salary=models.BigIntegerField(blank=True, null=True)
     rank=models.IntegerField(blank=True,null=True)
@@ -112,5 +113,5 @@ class Careers(models.Model):
         else:
             return ans
         
-        
+
         
