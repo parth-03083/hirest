@@ -1,0 +1,51 @@
+{% extends 'blog_home.html' %}
+
+{% block blogcontent %}
+
+<!-- <section class="breadcrumbs">
+  <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center">
+      <h2>Blogs</h2>
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Blogs</a></li>
+      </ol> 
+    </div>
+
+
+  </div>
+</section> -->
+
+<section id="blogs">
+  {% if posts %}
+  <div class="container">
+    {% for post in posts %}
+    <div class="card shadow mt-3">
+      {% if img.url %}
+      <img src="{{post.img.url}}" class="card-img-top" alt="blog-post-image">
+      {% endif %}
+      <div class="card-body">
+        <ul class="c d-none" style="list-style-type: none; padding-left: 0px;">
+          <li><i class="fa fa-tag"></i><a>{{post.category}}</a></li>
+          <li><i class="fa fa-comment"></i><a>{{ post.comments.all.count }} Comments</a></li>
+          <li><i class="fa fa-user"></i><a>Post By {{post.author.username}}</a></li>
+          <li><i class="fa fa-clock-o"></i><a>{{post.post_date | date:'d F'}}</a></li>
+        </ul>
+        <a style="text-decoration:none; color:black" href="{% url 'blog-detail' post.slug %}"><h5 class="card-title">{{post.title}}</h5></a>
+        <p class="card-text">{{post.body | slice:':250' | safe}}...</p>
+        <a href="{% url 'blog-detail' post.slug %}"><button type="button" class="btn btn-primary rounded shadow">Read More</button></a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+    <div class="container">
+      <div class="card">
+        <div class="d-flex justify-content-center"><p>No blogs are available.</p></div>
+      </div>
+    </div>
+  {% endif %}
+
+</section>
+{% endblock %}

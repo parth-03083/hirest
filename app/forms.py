@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import MyProfile , Job, Skills , Company
+from .models import MyProfile , Job, Skills , Company , StartUps
 
 class NewUserForm(UserCreationForm):
 	email = forms.EmailField(required=True)
@@ -48,4 +48,9 @@ class CompanyForm(forms.ModelForm):
 class SkillForm(forms.ModelForm):
 	class Meta:
 		model = Skills
+		fields = '__all__'
+
+class StartupForm(forms.ModelForm):
+	class Meta:
+		model = StartUps
 		fields = '__all__'

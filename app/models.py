@@ -73,7 +73,7 @@ class StartUps(models.Model):
     email=models.EmailField(blank=True, null=True)
     phone=models.CharField(max_length=500,blank=True, null=True)
     founded_date=models.DateTimeField(blank=True, null=True)
-    last_date=models.DateTimeField(blank=True, null=True)
+    created_by = models.OneToOneField(User,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -89,7 +89,6 @@ class Internships(models.Model):
     location=models.CharField(max_length=500,blank=True, null=True)
     posted_date=models.DateTimeField(auto_now_add=True)
     last_date=models.DateTimeField(blank=True, null=True)
-
 
     class Meta:
         ordering = ['rank']
@@ -113,5 +112,11 @@ class Careers(models.Model):
         else:
             return ans
         
+class StartUpTeam(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE) 
+    startup = models.ForeignKey(StartUps,on_delete=models.CASCADE)
+    is_approved = models.BooleanField(default=False)
 
-        
+    def __str__(self):
+        return str(self.user.username)  + '-' + str(self.startup)
+

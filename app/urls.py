@@ -23,4 +23,8 @@ urlpatterns = [
     path('job-search/',views.searchJobs,name='job-search'),
     path('add_skill/',views.addSkillView,name='add_skill'),
     path('add-profile/',views.createProfileView,name='add-profile'),
+    path('create-startup/',views.createStartup,name='create-startup'),
+    path('update-startup/',views.updateStartup,name='update-startup'),
+    path('join-startup/<int:id>/',views.joinStartupView,name='join-startup'),
+    path('approve-team/<int:id>/',views.approveJoinStartup,name='approve-team'),
 ] 
