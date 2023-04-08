@@ -27,5 +27,8 @@ urlpatterns = [
     path('update-startup/',views.updateStartup,name='update-startup'),
     path('join-startup/<int:id>/',views.joinStartupView,name='join-startup'),
     path('approve-team/<int:id>/',views.approveJoinStartup,name='approve-team'),
-    
+    path('careers/',views.careerInfoViewRIASEC,name='careers'),
+    path('career-test/',views.careerTestView,name='career-test'),
+
+
 ] 

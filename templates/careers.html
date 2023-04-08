@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load tags %}
+{% block css %}
+<link href="{% static  'assets/css/career.min.css' %}" rel="stylesheet">
+<link href="{% static  'assets/vendor/sweetalert2/sweetalert2.min.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+<!-- ======= Breadcrumbs ======= -->
+<section class="breadcrumbs">
+  <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center">
+      <h2>Careers</h2>
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Careers</a></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+    <div class="container mb-5">
+        <ul class="cards">
+            {% for career in careers %}
+            <li class="cards__item">
+              <div class="card">
+                <div class="card__content">
+                  <a href="{% url 'career-detail' career.id %}">
+                    <div class="card__title mb-2">{{career.header}}</div>
+                  </a>
+                  <p class="card__text">{{career.description}}</p>
+                  <div class="card__footer">
+                      {{career.footer}} 
+                      <div class="p-1">
+                        {% if not career.get_risec is None %}
+                          {% for i in career.get_risec|split:"," %}
+                            {% if not i == "" %}
+                              <span class="bg-primary px-2 py-1">{{i}}</span>
+                            {% endif %}
+                          {% endfor %}
+                        {% endif %}
+
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+    </div>
+
+{% endblock %}
+{% block js %}
+<script src="{% static 'assets/vendor/sweetalert2/sweetalert2.min.js' %}"></script>
+<script>
+  // $('.card').click(function(e) {
+  //   Swal.fire({
+  //     icon : 'icon',
+  //     title: 'Launching Soon',
+  //     confirmButtonColor: "#5faee3",
+  //   })
+  // });
+</script>
+
+{% endblock js %}

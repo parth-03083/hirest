@@ -360,7 +360,7 @@ def careerInfoViewRIASEC(request):
         careers = sorted(careers,  key=lambda x: sum(1 for c in riasce if c in x.risec),reverse=True)
 
         print(careers)
-        return render(request, 'career_info_view.html', {'careers': careers})
+        return render(request, 'careers.html', {'careers': careers})
     except:
         return redirect('riasec-test')
     
