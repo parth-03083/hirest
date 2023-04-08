@@ -68,7 +68,7 @@ class StartUps(models.Model):
     name=models.CharField(max_length=500,blank=True, null=True)
     description=models.TextField(blank=True, null=True)
     location=models.CharField(max_length=500,blank=True, null=True)
-    logo=models.ImageField(upload_to='uploads/startup/',blank=True, null=True)
+    logo=models.ImageField(upload_to='media/startup/',blank=True, null=True)
     website=models.CharField(max_length=500,blank=True, null=True)
     email=models.EmailField(blank=True, null=True)
     phone=models.CharField(max_length=500,blank=True, null=True)
