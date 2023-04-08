@@ -7,6 +7,7 @@ from .forms import *
 from django.template.loader import render_to_string
 from django.http import JsonResponse , HttpResponse
 from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 from .models import *
 
@@ -70,6 +71,7 @@ def jobView(request):
     context = {'jobs': jobs}
     return render(request, 'jobs.html', context=context)
 
+@login_required(login_url='login')
 def applyView(request):
     if request.user.is_authenticated:
         try:
@@ -83,6 +85,7 @@ def applyView(request):
     else:
         return redirect('login')
         
+@login_required(login_url='login')
 def myAppliedJobView(request):
     if request.user.is_authenticated:
         try:
@@ -106,6 +109,7 @@ def startupView(request):
     context={'startups':startups}
     return render(request,'startups.html',context=context)
 
+@login_required(login_url='login')
 def createProfileView(request):
     form = ProfileForm()
     skillform = SkillForm()
@@ -145,6 +149,7 @@ def myProfileView(request):
     
     return render(request, 'profile.html', {'form': form ,'skillform':skillform, 'header': False})
 
+@login_required(login_url='login')
 def postJobView(request):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -176,6 +181,7 @@ def postJobView(request):
 
 
 
+@login_required(login_url='login')
 def JobApplicationView(request):
     print(ishr(user=request.user))
     if request.user.is_authenticated and ishr(request.user) :
@@ -193,6 +199,7 @@ def JobApplicationView(request):
     else:
         return redirect('login')
     
+@login_required(login_url='login')
 def jobUpdateView(request,id):
     if ishr(request.user):
         job=Job.objects.get(id=id)
@@ -204,13 +211,14 @@ def jobUpdateView(request,id):
             return redirect('index')
         return render(request,'update_job.html',{'form':form})
 
+@login_required(login_url='login')
 def jobDeleteView(request,id):
     if ishr(request.user):
         job=Job.objects.get(id=id)
         job.delete()
         return redirect('index')
 
-
+@login_required(login_url='login')
 def jobApplicantsView(request,id):
     if ishr(request.user):
         job=Job.objects.get(id=id)
@@ -222,12 +230,14 @@ def jobApplicantsView(request,id):
 
         return render(request,'job_applicants.html',context=context)
 
+@login_required(login_url='login')
 def viewUserProfileView(request,id):
     user = User.objects.get(id=id)
     user_profile=MyProfile.objects.get(user=user)
     context={'user':user,'user_profile':user_profile}
     return render(request,'view_profile.html',context=context)
 
+@login_required(login_url='login')
 def createCompanyProfile(request):
     form = CompanyForm()
     if request.method == 'POST':
@@ -242,6 +252,7 @@ def createCompanyProfile(request):
             return redirect('index')
     return render(request, 'create_company_profile.html', {'form': form})
 
+@login_required(login_url='login')
 def updateCompanyProfile(request):
     form = CompanyForm()
     try:
