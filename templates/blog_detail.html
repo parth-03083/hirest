@@ -1,0 +1,99 @@
+{% extends 'index.html' %}
+{% block title %}
+<title>{{post.title_tag}}</title>
+{% endblock %}
+
+{% block meta %}
+{% if post.meta_description %}
+<meta name="description" content="{{post.meta_description}}">
+{% endif %}
+{% if post.img %}
+<meta property="og:image" content="{{post.img.url}}" />
+{% endif %}
+{% if post.meta_title %}
+<meta name="title" content="{{post.meta_title}}">
+<meta property="og:title" content="{{post.meta_title}}" />
+
+<title> {{post.meta_title}} </title>
+
+{% endif %}
+<meta property="og:type" content="article" />
+{% endblock %}
+
+
+{% block content %}
+<section class="breadcrumbs">
+  <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center">
+      <h2>Blogs</h2>
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="{% url 'blog' %}">Blogs</a></li>
+        <li><a href="#">{{post.title}}</a></li>
+      </ol> 
+    </div>
+
+
+  </div>
+</section>
+<section>
+<div class="container p-2">
+<div class="card shadow">
+  <h1 class="card-title">{{post.title}}</h1>
+  {% if post.img %}
+  <img src="{{post.img.url}}" class="card-img-top"
+   {% if post.image_alt %}
+    alt="{{post.image_alt}}"
+    {% else %}
+    alt="blog-title-image"
+    {% endif %}
+   />
+  {% endif %}
+  <div class="card-body blog-content">
+    <ul class="post-meta d-none" style="list-style-type: none; padding-left: 0px;">
+      <li><i class="fa fa-tag"></i><a>{{post.category}}</a></li>
+      <li><i class="fa fa-comment"></i><a>{{ post.comments.all.count }} Comments</a></li>
+      <li><i class="fa fa-user"></i><a>Post By {{post.author.first_name}}</a></li>
+      <li><i class="fa fa-clock-o"></i><a>{{post.post_date | date:'d F'}}</a></li>
+    </ul>
+    <p class="card-text">{{post.body | safe}}</p>
+  </div>
+</div>
+
+
+{% comment %}
+{% if not request.user.is_authenticated %}
+<div class="alert alert-danger">To comment, first <a href="/login">log in</a> to your account</div>
+{% endif %}
+
+{% if request.user.is_authenticated %}
+  <div class="">
+    <form action="{% url 'send_comment' post.slug %}" method="POST">
+      {% csrf_token %}
+      <div class="col-md-6 my-4">
+        <label>Write Comment</label>
+        <input type="hidden" name="post_id" value="{{ post.id }}">
+        <textarea name="message" class="form-control"></textarea>
+        <button type="submit" class="btn btn-primary rounded shadow m-3">Add Comment</button>
+      </div>
+    </form>
+  </div>
+{% endif %}
+
+<div class="p-2">
+  <h4 class="my-2">Comments:</h4>
+  {% for comment in post.comments.all %}
+  <div class="mx-3">
+    <h6><strong>{{ comment.sender.username}}</strong></h6>
+    <span>{{ comment.message }}</span>
+    <p class="text-secondary small">{{comment.create_at}}</p>
+  </div>
+  {% empty %}
+    <div class="">There is no comment</div>
+  {% endfor %}
+</div>
+{% endcomment %}
+</div>
+</section>
+{% endblock %}
