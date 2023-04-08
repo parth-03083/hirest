@@ -418,6 +418,11 @@ def approveJoinStartup(request,id):
 
     return JsonResponse(context)
 
+def jobDetailView(request,id):
+    job = Job.objects.get(id=id)
+    context = {'job':job}
+    return render(request,'job_details.html',context)
+
 
 
     
