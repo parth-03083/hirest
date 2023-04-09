@@ -13,7 +13,7 @@ from twilio.rest import Client
 # Create your views here.
 from .models import *
 import hirest.settings as settings
-
+import http.client
 
 def send_message(number,message):
     account_sid = settings.TWILIO_ACCOUNT_SID
@@ -452,6 +452,18 @@ def joinStartupView(request,id):
         return HttpResponse('following startup does not exist')
     
 
+@login_required(login_url = 'login')
+def appliedStartupView(request,id):
+    try:
+        startup = StartUps.objects.get(id=id)
+        applicants = StartUpTeam.objects.filter(startup = startup)
+        return render (request,'startup_applicants.html',{'applicants':applicants})
+    except StartUpTeam.DoesNotExist or StartUps.DoesNotExist:
+        if StartUps.DoesNotExist:
+            return redirect('create-startup')
+        if StartUpTeam.DoesNotExist:
+            return HttpResponse('No applicants has applied')
+
 
 @login_required(login_url='login')
 def approveJoinStartup(request,id):    
@@ -483,6 +495,11 @@ def sharityFunctionality(request):
             obj.user = request.user
             obj.save()
             print(obj.file)
+            file = obj.file
+            rows =  file.readlines()
+            for i in rows:
+                send_message()
+
             return HttpResponse('successs')
         else:
             print("form is not valid")
@@ -542,7 +559,25 @@ def rejectCandidate(request,id):
             return redirect('my-profile')
 
         
+def exportResume(request):
+    
+    conn = http.client.HTTPSConnection("api.apyhub.com")
+    instance = MyProfile.objects.get(user = request.user)
+    form = ProfileForm(instance=instance)
+    file = render(request,'profile.html',{'form':form})
+    payload = "{\n    \"content\":\" <html> <body> <h1> Hello World </h1> </body> </html>"+ file +"\"\n}"
 
+    headers = {
+        'apy-token': "APY0Ih0X5wtdpdCZk5h8fGPU44JuROMgIkmPxCcIdFiQXfqa4mDP84W3dn7osnTpKBkE00vTi2",
+        'Content-Type': "application/json"
+        }
+
+    conn.request("POST", "/generate/html-content/pdf-url?output=test-sample.pdf", payload, headers)
+
+    res = conn.getresponse()
+    data = res.read()
+    
+    return JsonResponse(data)
 
     
 
