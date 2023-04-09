@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_django',
+    'django_twilio',
     'app',
     'blogApp',
 
@@ -260,3 +261,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '738311302634-0o4t5jumdvklhj3h5abmbgl2rufreshs.a
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 
+TWILIO_ACCOUNT_SID = 'AC1d3dc857c139a20d9f9773890cec54f8'
+TWILIO_AUTH_TOKEN = '32973fc9ae95960867d9893f5a5f980b'
+
+
+DJANGO_TWILIO_BLACKLIST_CHECK = True 

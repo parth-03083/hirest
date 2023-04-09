@@ -31,6 +31,7 @@ class MyProfile(models.Model):
     education = models.TextField(blank=True,null=True)
     total_experience = models.CharField(max_length=10,blank=True,null=True)
     experties = models.IntegerChoices('experties', 'Beginner Intermediate Expert')
+    mobile_no = models.BigIntegerField(max_length=10)
 
     def __str__(self):
         return self.user.username

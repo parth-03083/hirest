@@ -8,8 +8,28 @@ from django.template.loader import render_to_string
 from django.http import JsonResponse , HttpResponse
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
+from twilio.twiml.messaging_response import MessagingResponse
+from twilio.rest import Client
 # Create your views here.
 from .models import *
+import hirest.settings as settings
+
+
+def send_message(number,message):
+    account_sid = settings.TWILIO_ACCOUNT_SID
+    auth_token = settings.TWILIO_AUTH_TOKEN
+
+    client = Client(account_sid, auth_token)
+    number = '+91' + str(number)
+
+    message = client.messages.create(
+                              body=message,
+                              from_='+15075745390',
+                              to=number)
+
+    print(message.sid)
+
+
 
 
 def is_ajax(request):
@@ -466,8 +486,16 @@ def approveCandidate(request,id):
         obj = AppliedJobs.objects.get(id=id)
         obj.status = 'accepted'
         obj.save()
-    except AppliedJobs.DoesNotExist :
-        return HttpResponse('apply to a job first')
+        message = 'Congratulations, you are selected in recent job you\'ve applied at ' + str(obj.job.company_name) + '.'
+        number = obj.user.mobile_no
+        send_message(number,message)
+    
+
+    except AppliedJobs.DoesNotExist or MyProfile.DoesNotExist :
+        if AppliedJobs.DoesNotExist:
+            return HttpResponse('apply to a job first')
+        elif MyProfile.DoesNotExist:
+            return redirect('my-profile')
 
 @login_required(login_url='/login')
 def interviewCandidate(request,id):
@@ -475,16 +503,33 @@ def interviewCandidate(request,id):
         obj = AppliedJobs.objects.get(id=id)
         obj.status = 'interview'
         obj.save()
-    except AppliedJobs.DoesNotExist :
-        return HttpResponse('apply to a job first')
+        message = 'Congratulations, you are selected for interview in recent job you\'ve applied at ' + str(obj.job.company_name) + '.'
+        number = obj.user.mobile_no
+        send_message(number,message)
+
+    except AppliedJobs.DoesNotExist or MyProfile.DoesNotExist :
+        if AppliedJobs.DoesNotExist:
+            return HttpResponse('apply to a job first')
+        elif MyProfile.DoesNotExist:
+            return redirect('my-profile')
+
 
 @login_required(login_url='/login')
 def rejectCandidate(request,id):
     try:
         obj = AppliedJobs.objects.get(id=id)
         obj.status = 'rejected'
-    except:
-        return HttpResponse('Approve candidate')
+        obj.save()
+        message = ' You are Rejected from recent applied position at ' + str(obj.job.company_name) + '.'
+        number = obj.user.mobile_no
+        send_message(number,message)
+
+    except AppliedJobs.DoesNotExist or MyProfile.DoesNotExist :
+        if AppliedJobs.DoesNotExist:
+            return HttpResponse('apply to a job first')
+        elif MyProfile.DoesNotExist:
+            return redirect('my-profile')
+
         
 
 
