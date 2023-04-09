@@ -133,7 +133,7 @@ class StartUpTeam(models.Model):
 
 class FileManager(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    file = models.FileField(upload_to='documents/')
+    file = models.FileField(upload_to='documents/',)
     
 
     def __str__(self):
