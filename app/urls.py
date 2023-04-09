@@ -29,9 +29,9 @@ urlpatterns = [
     path('approve-team/<int:id>/',views.approveJoinStartup,name='approve-team'),
     path('careers/',views.careerInfoViewRIASEC,name='careers'),
     path('career-test/',views.careerTestView,name='career-test'),
-    path('approve-candidate/<int:id>/',),
-    path('interview-candidate/<int:id>'),
-    path('reject-candidate/<int:id>')
+    path('approve-candidate/<int:id>/',views.approveCandidate,name='approve-candidate'),
+    path('interview-candidate/<int:id>',views.interviewCandidate,name='interview-candidate'),
+    path('reject-candidate/<int:id>',views.rejectCandidate,name='reject-candidate'),
 
 
 ] 

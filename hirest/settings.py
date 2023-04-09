@@ -41,8 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
     'app',
     'blogApp',
+
 ]
 
 MIDDLEWARE = [
@@ -53,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 
 ]
 
@@ -73,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
             ],
         },
     },
@@ -109,13 +113,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-# Auth0 settings
-AUTH0_CLIENT_ID = '722949365611-fdf97l3fnf6h7tq8fau51djgdi5s2r9p.apps.googleusercontent.com'
-AUTH0_CLIENT_SECRET = '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'
-AUTH0_DOMAIN = 'http://127.0.0.1.auth0.com'
-AUTH0_CALLBACK_URL = 'http://localhost:8000/callback/'
-AUTH0_LOGOUT_REDIRECT_URL = 'http://localhost:8000'
 
 
 # Internationalization
@@ -250,10 +247,16 @@ ENV_FILE = find_dotenv()
 if ENV_FILE:
     load_dotenv(ENV_FILE)
 
-# Load Auth0 application settings into memory
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
 
-AUTH0_CLIENT_ID = os.environ.get("AUTH0_CLIENT_ID")
-AUTH0_CLIENT_SECRET = os.environ.get("AUTH0_CLIENT_SECRET")
-SOCIAL_AUTH_AUTH0_DOMAIN = 'localhost'
-AUTH0_DOMAIN = 'localhost'
-ALLOWED_ORIGIN = 'localhost'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '738311302634-0o4t5jumdvklhj3h5abmbgl2rufreshs.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+
