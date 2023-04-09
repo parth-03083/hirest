@@ -1,6 +1,45 @@
 {% extends 'index.html' %}
 {% block content %}
 
+<div class="row">
+    <div class="col-md-12 text-center h1">
+        {{job.title}}
+    </div>
+</div>
+
+<div class="row mt-3 justify-content-center">
+    <div class="col-lg-6 col-md-12 col-12 p-4 width-card shadow card mx-2">
+        <div class="">
+            <div class="p-1 text-secondary">
+                Company Name : {{job.company_name}}
+            </div>
+            <div class="p-1 text-secondary">
+                Category : {{job.category}} 
+            </div>
+            <div class="p-1 text-secondary">
+                skills required : {{job.skills}} 
+            </div>
+            <div class="p-1 text-secondary">
+                {{job.salary}} 
+            </div>
+            
+            <div class="p-1 text-secondary">
+                Description : {{job.description}} 
+            </div>
+            <div class="p-1 text-secondary">
+                Experience : {{job.experience}}  
+            </div>
+
+            <div class="p-1 text-secondary">
+                Location : {{job.location}} 
+            </div>
+            </div>
+            
+
+        </div>
+    </div>
+
+</div>
 
 
 {% endblock %}

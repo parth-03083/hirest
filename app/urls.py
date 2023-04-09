@@ -33,6 +33,6 @@ urlpatterns = [
     path('approve-candidate/<int:id>/',views.approveCandidate,name='approve-candidate'),
     path('interview-candidate/<int:id>',views.interviewCandidate,name='interview-candidate'),
     path('reject-candidate/<int:id>',views.rejectCandidate,name='reject-candidate'),
-
+    path('share-doc', views.sharityFunctionality, name="share-doc")
 
 ] 
