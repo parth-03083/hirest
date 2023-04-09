@@ -167,25 +167,25 @@
         <div class="container py-4">
             <div class="row gy-4 gx-5">
                 <div class="col-lg-4 col-md-6">
-                    <h5 class="h1 text-white">HireSt.</h5>
+                    <h5 class="h1 text-white">Hirest</h5>
                     <p class="small text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
                     <p class="small text-white mb-0">&copy; Copyrights. All rights reserved.</p>
                 </div>
                 <div class="col-lg-2 col-md-6">
                     <h5 class="text-white mb-3">Navigate to</h5>
                     <ul class="list-unstyled text-muted text-white">
-                        <li><a class="text-white" href="#">Home</a></li>
-                        <li><a class="text-white" href="#">My Profile</a></li>
-                        <li><a class="text-white" href="#">Applied Positions</a></li>
+                        <li><a class="text-white" href="{% url 'index' %}">Home</a></li>
+                        <li><a class="text-white" href="{% url 'my-profile' %}">My Profile</a></li>
+                        <li><a class="text-white" href="{% url 'my-applied' %}">Applied Positions</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6">
                     <h5 class="text-white mb-3">Explore</h5>
                     <ul class="list-unstyled text-white">
-                        <li><a class="text-white" href="#">Job</a></li>
-                        <li><a class="text-white" href="#">Internship</a></li>
-                        <li><a class="text-white" href="#">Start Ups</a></li>
-                        <li><a class="text-white" href="#">Blogs</a></li>
+                        <li><a class="text-white" href="{% url 'jobs' %}">Job</a></li>
+                        <li><a class="text-white" href="{% url 'internships' %}">Internship</a></li>
+                        <li><a class="text-white" href="{% url 'startups' %}">Start Ups</a></li>
+                        <li><a class="text-white" href="{% url 'blog' %}">Blogs</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-6">

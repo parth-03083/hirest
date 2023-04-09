@@ -477,16 +477,20 @@ def sharityFunctionality(request):
     if request.method == 'POST':
         form = FileForm(request.POST)
         print(form)
-        if form.is_valid():
-            print("form is valid")
-            obj = form.save(commit = False)
-            obj.user = request.user
-            obj.save()
-            print(obj.file)
-            return HttpResponse('successs')
-        else:
-            print("form is not valid")
-            return HttpResponse('failure')
+        try:
+            if form.is_valid():
+                print("form is valid")
+                obj = form.save(commit = False)
+                obj.user = request.user
+                obj.save()
+                print(obj.file)
+                return HttpResponse('successs')
+            else:
+                print("form is not valid")
+                return HttpResponse('failure')
+        except Exception as e:
+            print(f"Error submitting form: {e}")
+            return HttpResponse('error')
     else:
         return render(request,'share-doc.html',{'form':form})
 
