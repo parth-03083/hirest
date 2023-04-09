@@ -246,8 +246,10 @@ def jobApplicantsView(request,id):
     if ishr(request.user):
         job=Job.objects.get(id=id)
         applicants=AppliedJobs.objects.filter(job=job)
+        
         skills = list(set(job.skills.all()))
-        applicants = sorted(applicants, key=lambda x: sum([1 for i in x.user.skills.all() if i.name in skills ]), reverse=True)
+        
+        # applicants = sorted(applicants, key=lambda x: sum([1 for i in x.user.skills.all() if i.name in skills ]), reverse=True)
 
         context={'applicants':applicants}
 
