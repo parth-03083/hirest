@@ -26,10 +26,28 @@
                                 {% endfor %}
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 <a href="{% url 'user-profile' a.user.user.id %}"
-                                    class="btn btn-outline-primary btn-sm rounded-lg shadow-sm my-auto" target="_blank"> View Profile </a>
+                                    class="btn btn-outline-primary btn-sm rounded-lg shadow-sm my-auto" target="_blank">    
+                                        View Profile 
+                                    </a>
                             </div>
+
+                            <div class="col-md-1">
+                                <a href="{% url 'approve-candidate' {{a.id}} %}" class="btn btn-outline-primary btn-sm rounded-lg shadow-sm my-auto" target="_blank" > Hire  </a>
+                                </a>
+                            </div>
+
+                            <div class="col-md-1">
+                                <a href="{% url ' interview-candidate' {{a.id}} %}" class="btn btn-outline-primary btn-sm rounded-lg shadow-sm my-auto" target="_blank" > Call  for Interview  </a>
+                                </a>
+                            </div>
+                            <div class="col-md-1">
+                                <a href="{% url ' interview-candidate'  {{a.id}} %}" class="btn btn-outline-primary btn-sm rounded-lg shadow-sm my-auto" target="_blank" > Reject  </a>
+                                </a>
+                            </div>
+                            
+
                         </li>
                         {% endfor %}
                     {% endif %}
