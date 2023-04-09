@@ -17,6 +17,7 @@ urlpatterns = [
     path('update-job/<int:id>',views.jobUpdateView,name='update-job'),
     path('delete-job/<int:id>',views.jobDeleteView,name='delete-job'),
     path('manage-jobs/',views.JobApplicationView,name='manage-jobs'),
+    path('jobs/<int:id>',views.jobDetailView,name='job-details'),
     path('job-applications/<int:id>',views.jobApplicantsView,name='job-applicants'),
     path('create-company/',views.createCompanyProfile,name='create-company'),
     path('update-company/',views.updateCompanyProfile,name='update-company'),

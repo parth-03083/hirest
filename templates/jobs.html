@@ -22,14 +22,16 @@
 
 <div class="card col-md-3 m-2" style="width: 16rem;">
   <div class="card-body">
-    <div class="job-company d-flex">
     {% if job.company_name.logo %}
-    <img src="{{job.company_name.logo.url}}" alt="" class=" w-25 mx-1 rounded-circle">
-    <h5 class="card-title">{{job.company_name}}</h5>
-    {% endif %}
+    <div class="job-company d-flex">
+      <img src="{{job.company_name.logo.url}}" alt="" class=" w-25 mx-1 rounded-circle">
+      <h5 class="card-title">{{job.company_name}}</h5>
     </div>
+    {% endif %}
+    <a href="{% url 'job-details' job.id %}">
+      <h5 class="card-title">{{job.company_name}}</h5>
+    </a>
     <p class=" mb-0 p-0">{{job.title}} </p>
-    {% comment %} {{job.company_name.logo.url}} {% endcomment %}
     <p class="card-subtitle text-muted "> abc {{job.category}} </p>
     <p class="card-text text-secondary my-1">$ {{job.salary}} </p>
     <div class="container">
