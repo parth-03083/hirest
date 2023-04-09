@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django_twilio',
     'app',
     'blogApp',
-
+    'django_social_share',
 ]
 
 MIDDLEWARE = [

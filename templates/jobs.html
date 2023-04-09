@@ -11,6 +11,10 @@
       <button type="button" class="btn btn-primary my-2 mx-1">{{skill.name}}</button>
       {% endfor %}
       <div class="m-2">
+        <div class="container">
+          <a href="#" data-target="{{job.id}}" class="btn btn-primary">Apply</a>
+          <a href="http://www.linkedin.com/shareArticle?url=http://127.0.0.1/jobs/{{job.id}}&title=<Find Jobs on Hirest>&source=http://your-domain"> Share on Twitter </a>
+        </div>
         <a href="#" data-target="{{job.id}}" class="btn btn-success apply">Apply</a>
       </div>
   </div>
@@ -28,8 +32,13 @@
     {% comment %} {{job.company_name.logo.url}} {% endcomment %}
     <p class="card-subtitle text-muted "> abc {{job.category}} </p>
     <p class="card-text text-secondary my-1">$ {{job.salary}} </p>
+    <div class="container">
+      <a href="#" data-target="{{job.id}}" class="btn btn-primary apply">Apply</a>
 
-    <a href="#" data-target="{{job.id}}" class="btn btn-primary">Apply</a>
+      <a href="http://www.linkedin.com/shareArticle?url=http://127.0.0.1/jobs/{{job.id}}&title=<Checkout this job on Hirest>&source=http://127.0.0.1"> Share on LinkedIn </a>
+      
+
+    </div>
   </div>
 </div>
 
