@@ -60,11 +60,14 @@ class AppliedJobs(models.Model):
     job=models.ForeignKey(Job,on_delete=models.CASCADE)
     user=models.ForeignKey(MyProfile,on_delete=models.CASCADE)
     applied_date=models.DateTimeField(auto_now_add=True)
+    
     STATUS_CHOICES = [
         ('accepted','Accepted'),
         ('rejected','Rejected'),
-        ('pending','Pending')
+        ('pending','Pending'),
+        ('interview','Call For Interview')
     ]
+
     status = models.CharField(choices=STATUS_CHOICES,max_length=20,default='pending')
 
 

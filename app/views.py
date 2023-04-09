@@ -460,8 +460,32 @@ def sharityFunctionality(request):
             obj.save()
 
 
-            
+@login_required(login_url='/login')
+def approveCandidate(request,id):
+    try:
+        obj = AppliedJobs.objects.get(id=id)
+        obj.status = 'accepted'
+        obj.save()
+    except AppliedJobs.DoesNotExist :
+        return HttpResponse('apply to a job first')
 
+@login_required(login_url='/login')
+def interviewCandidate(request,id):
+    try:
+        obj = AppliedJobs.objects.get(id=id)
+        obj.status = 'interview'
+        obj.save()
+    except AppliedJobs.DoesNotExist :
+        return HttpResponse('apply to a job first')
+
+@login_required(login_url='/login')
+def rejectCandidate(request,id):
+    try:
+        obj = AppliedJobs.objects.get(id=id)
+        obj.status = 'rejected'
+    except:
+        return HttpResponse('Approve candidate')
+        
 
 
     
