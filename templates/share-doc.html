@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load tags %}
+
+<form method="POST" class="col-md-12">
+            
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="col-lg-12 mt-3">
+        <label class="form-label text-gray-900 mb-0">{{ field.label_tag }}</label>
+        {{field }}
+        {{ field.errors }}
+    </div>
+    {% endfor %}
+
+    <div class="col-12 text-center">
+        <input type="submit" class="btn btn-primary btn-block mt-4" value="Add Job"></input>
+    </div>
+
+</form>
+    {% if messages %}
+    <ul class="mt-4 alert alert-danger" style="list-style: none;">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message
+            }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+
+{% endblock %}
