@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import *
-# Register your models here.
+# Register your models here. edited afmib
 admin.site.register(Skills)
 admin.site.register(Job)
 admin.site.register(AppliedJobs)
